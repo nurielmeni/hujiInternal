@@ -29,7 +29,7 @@ define( 'DB_USER', 'hujint_db');
 define( 'DB_PASSWORD', 'tphNWFV=LZ5yes~uARXNT');
 
 /** MySQL hostname */
-define( 'DB_HOST', 'localhost');
+define( 'DB_HOST', 'dbint');
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8');
