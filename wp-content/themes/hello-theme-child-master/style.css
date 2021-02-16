@@ -527,6 +527,22 @@ h2.content.title-decoration:before {
 
 /* End Home page widgets */
 
+/* Home page Cards */
+.huji-card {
+    max-width: 590px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+.huji-card .huji-card-title{
+    font-size: 1.75rem;
+    background-color: #006171;
+}
+.huji-card .huji-card-body{
+    padding: 1.75rem 1rem;
+}
+/* End Home page cards */
+
 /* RESPONSIVE PROPERTIES */
 /* Navigation */
 @media (max-width: 559.99px) {
