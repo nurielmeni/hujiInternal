@@ -522,12 +522,18 @@ h2.content.title-decoration:before {
     background-color: var(--color-primary);
     border-radius: 3.5px;
     margin-left: 1rem;
-    font-size: 2rem;
+    font-size: 2rem; 
 }
 
 /* End Home page widgets */
 
 /* Home page Cards */
+section.huji-int-cards {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 5rem;
+}
+
 .huji-card {
     max-width: 590px;
     border-top-left-radius: 16px;
@@ -537,6 +543,13 @@ h2.content.title-decoration:before {
 .huji-card .huji-card-title{
     font-size: 1.75rem;
     background-color: #006171;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 0.5rem 1rem;
+}
+.huji-card .huji-card-title h4{
+    padding: 0;
+    margin: 0;
 }
 .huji-card .huji-card-body{
     padding: 1.75rem 1rem;
