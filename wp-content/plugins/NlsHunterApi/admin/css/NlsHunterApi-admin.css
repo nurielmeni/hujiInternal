@@ -1,0 +1,33 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+#NlsHunterApi_settings {
+    direction: ltr; 
+    text-align: left;
+}
+#NlsHunterApi_settings section {
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #CCC;
+}
+#NlsHunterApi_settings label {
+    width: 150px; 
+    font-weight: bold; 
+    padding: 20px 0 20px 10px; 
+    display: inline-block;
+}
+#NlsHunterApi_settings input {
+    width:calc(100% - 170px); 
+    margin-bottom: 9px; 
+    padding: 5px 10px; 
+    vertical-align: middle;
+}
+#NlsHunterApi_settings input[type="submit"] {
+    width: 100%;
+}
+
+#NlsHunterApi_settings input[type="checkbox"] {
+    width: 1em;
+}

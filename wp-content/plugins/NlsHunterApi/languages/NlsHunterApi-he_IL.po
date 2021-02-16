@@ -1,0 +1,665 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: NlsHunterApi\n"
+"POT-Creation-Date: 2020-12-29 11:56+0200\n"
+"PO-Revision-Date: 2020-12-29 11:58+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: NlsHunterApi.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/class-NlsHunterApi-admin.php:151
+msgid "You do not have sufficient permissions to access this page."
+msgstr "אין לך הרשאות מספיקות כדי לגשת לדף זה!"
+
+#: includes/Hunter/NlsHelper.php:98 templates/areas-filter.php:3
+msgid "Select"
+msgstr "בחר/י"
+
+#: includes/class-NlsHunterApi-model.php:44
+msgid "Could not create Model."
+msgstr "לא ניתן היה ליצור Modal"
+
+#: includes/class-NlsHunterApi-model.php:45
+msgid "Error: NlsHunterApi_model: "
+msgstr "‫Error: NlsHunterApi_model: "
+
+#: includes/class-NlsHunterApi-model.php:81
+msgid "Freind"
+msgstr "חבר/ה"
+
+#: includes/class-NlsHunterApi-model.php:82
+msgid "Web job site"
+msgstr "לוח דרושים אינטרנטי"
+
+#: includes/class-NlsHunterApi-model.php:83
+msgid "Social Media"
+msgstr "רשתות חברתיות"
+
+#: includes/class-NlsHunterApi-model.php:84
+msgid "Other"
+msgstr "אחר"
+
+#: includes/class-NlsHunterApi-model.php:153
+msgid "Could not init Card Services."
+msgstr "אין אפשרות להתחבר לשירותי Card"
+
+#: includes/class-NlsHunterApi-model.php:154
+msgid "Error: Card Services: "
+msgstr "שגיאה: שירותי Card"
+
+#: includes/class-NlsHunterApi-model.php:172
+msgid "Could not init Directory Services."
+msgstr "אין אפשרות להתחבר לשירותי Directory"
+
+#: includes/class-NlsHunterApi-model.php:173
+msgid "Error: Directory Services: "
+msgstr "‫שגיאה: שירותי Directory"
+
+#: includes/class-NlsHunterApi-model.php:191
+msgid "Could not init Search Services."
+msgstr "אין אפשרות להתחבר לשירותי Search"
+
+#: includes/class-NlsHunterApi-model.php:192
+msgid "Error: Search Services: "
+msgstr "‫Error: Search Services: "
+
+#: includes/class-NlsHunterApi-model.php:264
+msgid "Page was not provided (Hunter Plugin Admin) - "
+msgstr "דף תוצאות חיפוש לא סופק (ניהול תוסף האנטר) - "
+
+#: includes/class-NlsHunterApi-model.php:265
+#: includes/class-NlsHunterApi-modules.php:72
+msgid "Missing Settings"
+msgstr "הגדרות חסרות"
+
+#: includes/class-NlsHunterApi-model.php:287
+msgid "Could not connect to Hunter Directory Services"
+msgstr "אין אפשרות להתחבר לשירותי האנטר"
+
+#: includes/class-NlsHunterApi-model.php:288
+msgid "Authentication Error"
+msgstr "שגיאת הזדהות"
+
+#: includes/class-NlsHunterApi-model.php:405
+#: includes/class-NlsHunterApi-model.php:416
+msgid "Job Code is missing (or not found)."
+msgstr "מזהה משרה חסר (לא סופק)"
+
+#: includes/class-NlsHunterApi-model.php:406
+#: includes/class-NlsHunterApi-model.php:417
+msgid "Could not display Job Details"
+msgstr "לא היתה אפשרות להציג פרטי משרה"
+
+#: includes/class-NlsHunterApi-modules.php:71
+msgid "Search Results page was not provided (Hunter Plugin Admin)."
+msgstr "דף תוצאות חיפוש לא סופק (ניהול תוסף האנטר)"
+
+#: includes/class-NlsHunterApi-modules.php:107
+#: public/partials/searchResultsMobile.php:2
+msgid "Search Results"
+msgstr "תוצאות חיפוש משרה"
+
+#: public/class-NlsHunterApi-public.php:180
+#: public/class-NlsHunterApi-public.php:211
+msgid "Error on uploading the file"
+msgstr "התרחשה שגיאה בהעלאת הקובץ"
+
+#: public/class-NlsHunterApi-public.php:212
+msgid "It might be for corrupted or to large file."
+msgstr "ייתכן והקובץ פגום או גדול מדי"
+
+#: public/class-NlsHunterApi-public.php:225
+msgid "Card not found"
+msgstr "כרטיס לא נמצא"
+
+#: public/class-NlsHunterApi-public.php:226
+msgid "Could not find a card with the submited data, check your details"
+msgstr "לא הצלחנו למצוא כרטיס עם הפרטים שנשלחו, בדוק/י את הפרטים"
+
+#: public/class-NlsHunterApi-public.php:240
+msgid "File upload error"
+msgstr "שגיאה בהעלאת הקובץ"
+
+#: public/class-NlsHunterApi-public.php:241
+msgid "Could not upload the file to the card"
+msgstr "השלמת הקבצים נכשלה"
+
+#: public/class-NlsHunterApi-public.php:253
+msgid "Success"
+msgstr "הצלחה"
+
+#: public/class-NlsHunterApi-public.php:254
+msgid "Your file: "
+msgstr "הקובץ שלך: "
+
+#: public/class-NlsHunterApi-public.php:255
+msgid "Uploaded successfuly"
+msgstr "נשמר בהצלחה"
+
+#: public/class-NlsHunterApi-public.php:270 public/partials/applyForJobs.php:10
+msgid "First Name"
+msgstr "שם פרטי"
+
+#: public/class-NlsHunterApi-public.php:271 public/partials/applyForJobs.php:23
+msgid "Last Name"
+msgstr "שם משפחה"
+
+#: public/class-NlsHunterApi-public.php:272 public/partials/applyForJobs.php:36
+msgid "ID"
+msgstr "תעודת זהות"
+
+#: public/class-NlsHunterApi-public.php:273 public/partials/popup.php:10
+msgid "Email"
+msgstr "דוא״ל"
+
+#: public/class-NlsHunterApi-public.php:274 public/partials/applyForJobs.php:62
+msgid "Cell"
+msgstr "טלפון נייד"
+
+#: public/class-NlsHunterApi-public.php:275 public/partials/applyForJobs.php:75
+msgid "Worked before"
+msgstr "האם עבדת בעבר/עובד/ת כעת באוניברסיטה?"
+
+#: public/class-NlsHunterApi-public.php:276 public/partials/applyForJobs.php:92
+msgid "Relatives in the company?"
+msgstr "האם יש לך קרובי משפחה באוניברסיטה?"
+
+#: public/class-NlsHunterApi-public.php:277
+#: public/partials/applyForJobs.php:110
+msgid "Relative Name"
+msgstr "שם קרוב/ת משפחה"
+
+#: public/class-NlsHunterApi-public.php:278
+#: public/partials/applyForJobs.php:123
+msgid "Relation"
+msgstr "קרבה משפחתית"
+
+#: public/class-NlsHunterApi-public.php:279
+#: public/partials/applyForJobs.php:136
+msgid "Required Certificates"
+msgstr "האם ברשותך כל התעודות הדרושות?"
+
+#: public/class-NlsHunterApi-public.php:280
+#: public/partials/applyForJobs.php:159
+msgid "How did you get to us"
+msgstr "איך הגעת אלינו?"
+
+#: public/class-NlsHunterApi-public.php:281
+#: public/partials/applyForJobs.php:166
+msgid "Referer Name"
+msgstr "שם"
+
+#: public/class-NlsHunterApi-public.php:282
+msgid "Supplier Id"
+msgstr "מזהה ספק"
+
+#: public/class-NlsHunterApi-public.php:312
+msgid "CV without a Job"
+msgstr "קורות חיים ללא משרה"
+
+#: public/class-NlsHunterApi-public.php:379
+msgid "Applicant form data: "
+msgstr "פרטי טופס עבור מועמד: "
+
+#: public/class-NlsHunterApi-public.php:400
+msgid "CV Applied from Jobs Site"
+msgstr "קורות חיים שהוגשו דרך אתר משרות"
+
+#: public/class-NlsHunterApi-public.php:435
+msgid "Thenk you for applying, the form submited successfully!"
+msgstr "קורות החיים הוגשו בהצלחה.<br>תודה על פנייתך!"
+
+#: public/class-NlsHunterApi-public.php:442
+msgid "Error occured"
+msgstr "התרחשה שגיאה"
+
+#: public/class-NlsHunterApi-public.php:443
+msgid "The cv could not be sent successfully!"
+msgstr "קורות החיים לא נשלחו, נסה/י שוב מאוחר יותר!"
+
+#: public/partials/applyForJobs.php:49
+msgid "email"
+msgstr "דוא״ל"
+
+#: public/partials/applyForJobs.php:79 public/partials/applyForJobs.php:98
+#: public/partials/applyForJobs.php:146
+msgid "Yes"
+msgstr "כן"
+
+#: public/partials/applyForJobs.php:83 public/partials/applyForJobs.php:102
+#: public/partials/applyForJobs.php:150
+msgid "No"
+msgstr "לא"
+
+#: public/partials/applyForJobs.php:93
+msgid "Relatives in the company help text"
+msgstr ""
+"‫קרוב משפחה הורים וילדים, בני זוג (כולל ידועים בציבור), אח ואחות, גיס וגיסה, "
+"חותן וחותנת, חתן וכלה, חם וחמות, בן/בת אח ואחות, דוד ודודה, בן/בת דוד ודודה, "
+"סבא וסבתא, נכד ונכדה, וכן קרובים “חורגים” באותם יחסי קרבה."
+
+#: public/partials/applyForJobs.php:182
+msgid "Append CV File"
+msgstr "צרף קובץ קורות חיים (doc/pdf/jpeg)"
+
+#: public/partials/applyForJobs.php:184 public/partials/applyForJobs.php:202
+msgid "Browse File"
+msgstr "בחר/י קובץ"
+
+#: public/partials/applyForJobs.php:200
+msgid "Other Files"
+msgstr "העלאת מסמכים נוספים (תעודות השכלה/שמות ממליצים)"
+
+#: public/partials/applyForJobs.php:217 public/partials/hotJobs.php:10
+#: public/partials/searchResultsMobile.php:10 templates/job.php:28
+msgid "Submit CV"
+msgstr "הגשת מועמדות"
+
+#: public/partials/categoryGaleryEnd.php:3
+msgid "Personal Area"
+msgstr "איזור אישי"
+
+#: public/partials/categoryGaleryEnd.php:4
+msgid "All jobs"
+msgstr "כל המשרות"
+
+#: public/partials/categoryGaleryStart.php:3
+msgid "Our categories"
+msgstr "תחומי העיסוק שלנו"
+
+#: public/partials/hotJobs.php:2
+msgid "Hot Jobs"
+msgstr "משרות חמות"
+
+#: public/partials/hotJobs.php:8
+msgid "More Details"
+msgstr "פרטים נוספים"
+
+#: public/partials/jobBottom.php:9
+msgid "Apply for job"
+msgstr "הגשת מועמדות למשרה"
+
+#: public/partials/jobBottom.php:12
+msgid "Share the job"
+msgstr "שיתוף משרה"
+
+#: public/partials/jobDetails.php:8 templates/job.php:12
+msgid "Last application date"
+msgstr "תאריך אחרון להגשה"
+
+#: public/partials/jobDetails.php:15
+msgid "Back to search results"
+msgstr "חזרה למשרות"
+
+#: public/partials/jobDetails.php:32
+msgid "Very long text first line"
+msgstr ""
+"במסגרת מדיניות האוניברסיטה לעודד העסקת עובדים עם מוגבלויות, מובהר כי במקרים "
+"בהם ההערכות שניתנו למועמדים על ידי חברי הוועדה תהיינה זהות, תינתן עדיפות "
+"למועמדים בעלי מוגבלות."
+
+#: public/partials/jobDetails.php:33
+msgid "Very long text secound line"
+msgstr ""
+"‫האוניברסיטה העברית פועלת להגברת המגוון בקרב צוות העובדים, לקידום ייצוג הולם "
+"לעובדים/ות מקרב אזרחי ישראל הערבים, החרדים ויוצאי/ות אתיופיה."
+
+#: public/partials/jobDetails.php:35
+msgid "Very long text arab text"
+msgstr ""
+"‫‫تعمل الجامعة العبريّة على تعزيز التنوّع في طواقم العمل، من أجل الوصول إلى "
+"التمثيل المناسب للعاملين والعاملات من المواطنين العرب."
+
+#: public/partials/personalArea.php:7
+msgid "Personal area"
+msgstr "איזור אישי"
+
+#: public/partials/popup.php:5
+msgid "Submit additionsl documents"
+msgstr "הגשת מסמכים נוספים"
+
+#: public/partials/popup.php:15
+msgid "Cell phone"
+msgstr "טלפון נייד"
+
+#: public/partials/popup.php:26
+msgid "Upload documents"
+msgstr "העלאת מסמכים"
+
+#: public/partials/popup.php:36
+msgid "Send"
+msgstr "שלח/י"
+
+#: public/partials/popup.php:37
+msgid "One or more fields are invalid"
+msgstr "אחד או יותר משדות הטופס לא תקין"
+
+#: public/partials/searchForm.php:5
+msgid "Area"
+msgstr "קמפוס"
+
+#: public/partials/searchForm.php:9
+msgid "Experty"
+msgstr "חלקיות משרה"
+
+#: public/partials/searchForm.php:13
+msgid "Main Professional Field"
+msgstr "תחום"
+
+#: public/partials/searchForm.php:17
+msgid "Search"
+msgstr "חפש/י"
+
+#: public/partials/searchResults.php:9
+msgid "Back"
+msgstr "חזור"
+
+#: public/partials/searchResults.php:15
+#, php-format
+msgid "Found %s jobs"
+msgstr "נמצאו %s משרות"
+
+#: public/partials/searchResults.php:18
+msgid "Submit CV several jobs"
+msgstr "הגשת קו”ח למס’ משרות"
+
+#: public/partials/searchResults.php:40
+msgid "No results for the search criteria"
+msgstr "לא נמצאו תוצאות העונות למאפייני החיפוש"
+
+#: public/partials/searchResultsMobile.php:4
+msgid "New Search"
+msgstr "חיפוש חדש"
+
+#: public/partials/searchResultsMobile.php:13 templates/job.php:29
+msgid "Share Job"
+msgstr "שיתוף משרה"
+
+#: public/partials/searchResultsMobile.php:18
+msgid "Submit Several Jobs"
+msgstr "הגשת מועמדות למספר משרות"
+
+#: public/partials/searchResultsMobile.php:26 templates/pager.php:15
+msgid "Prev"
+msgstr "קודם"
+
+#: public/partials/searchResultsMobile.php:27 templates/pager.php:16
+msgid "Next"
+msgstr "הבא"
+
+#: public/partials/sliderPeopleStart.php:3
+msgid "Our people"
+msgstr "האנשים שלנו"
+
+#: templates/content-job.php:3
+msgid "Jod Code"
+msgstr "קוד משרה"
+
+#: templates/content-job.php:7
+msgid "Employment Type"
+msgstr "היקף משרה"
+
+#: templates/content-job.php:11
+msgid "Region Text"
+msgstr "קמפוס"
+
+#: templates/content-job.php:17
+msgid "Jod Description"
+msgstr "תיאור המשרה"
+
+#: templates/content-job.php:21
+msgid "Job Requirements"
+msgstr "דרישות המשרה"
+
+#: templates/content-job.php:25
+msgid "Job Skills"
+msgstr "הערות"
+
+#: templates/job.php:23
+msgid "Read more"
+msgstr "קרא/י עוד"
+
+#: templates/mailApply.php:18
+msgid "Applied CV from Jobs Site"
+msgstr "קורות חיים שהוגשו דרך אתר משרות"
+
+#: templates/shareWidget.php:7 templates/shareWidget.php:10
+#: templates/social-job.php:9 templates/social-job.php:14
+msgid "I have found a job for you"
+msgstr "מצאתי משרה בדיוק בשבילך"
+
+#. Plugin Name of the plugin/theme
+msgid "NlsHunterApi"
+msgstr "NlsHunterApi"
+
+#. Description of the plugin/theme
+msgid "API fot Niloosoft HunterHRMS System."
+msgstr ".‫API fot Niloosoft HunterHRMS System"
+
+#. Author of the plugin/theme
+msgid "Meni Nurie"
+msgstr "Meni Nurie"
+
+#~ msgid "Card found"
+#~ msgstr "כרטיס נמצא"
+
+#~ msgid "Your data found the card: "
+#~ msgstr "הפרטים מצאו את המשרה:"
+
+#~ msgid "Web"
+#~ msgstr "אתר"
+
+#~ msgid "Thenk you for your request"
+#~ msgstr "תודה על פנייתך"
+
+#~ msgid "Full name"
+#~ msgstr "שם מלא"
+
+#~ msgid "File select"
+#~ msgstr "בחירת קובץ"
+
+#~ msgid "File not selected files: pdf/doc/docx"
+#~ msgstr "לא נבחר קובץ סוגי הקבצים המומלצים: doc / docx / pdf / rtf"
+
+#~ msgid "Send Cv"
+#~ msgstr "הגש/י קו”ח"
+
+#~ msgid "Form error. Check the submited data."
+#~ msgstr "*ישנה שגיאה בטופס. אנא בדוק את הנתונים שהזנת."
+
+#~ msgid "Name"
+#~ msgstr "שם"
+
+#~ msgid "CV Applied from Shaari Tzedek Jobs Site"
+#~ msgstr "קורות חיים מאתר משרות אלביט"
+
+#~ msgid ""
+#~ "* To your attention, in accordance with the govermental companies (ruls "
+#~ "regarding relatives employment), 2005, applicant with relatives employee, "
+#~ "will be examined."
+#~ msgstr ""
+#~ "*לתשומת לבך, בהתאם לתקנות החברות הממשלתיות (כללים בדבר העסקת קרובי "
+#~ "משפחה), התשס”ה- 2005, מועמד/ת בעל/ת קרבה משפחתית לעובד/ת בחברה, יי/תבחן "
+#~ "עניינית בהתאם לסייגים הקבועים בדין ובנהלי התעשייה האווירית."
+
+#~ msgid ""
+#~ "By applying, you agree to recieve updates/messages regarding recruiments "
+#~ "to IAI"
+#~ msgstr ""
+#~ "בעת הגשת מועמדות, הינך מסכימ/ה לקבל עדכונים/דיוורים בנושא גיוס לתעשייה "
+#~ "האווירית"
+
+#~ msgid "Job Location"
+#~ msgstr "מיקום גיאוגרפי"
+
+#~ msgid "City"
+#~ msgstr "עיר"
+
+#~ msgid "Submit CVs"
+#~ msgstr "הגשת מועמדות"
+
+#~ msgid "(Optional)"
+#~ msgstr "(אופציונאלי)"
+
+#~ msgid "Another citizenship"
+#~ msgstr "אזרחות נוספת"
+
+#~ msgid "Citizenship type"
+#~ msgstr "סוג אזרחות"
+
+#~ msgid "My strong side is..."
+#~ msgstr "הצד החזק שלי הוא…"
+
+#~ msgid "My strong side"
+#~ msgstr "הצד החזק שלי"
+
+#~ msgid "Is student"
+#~ msgstr "אני כיום סטודנט"
+
+#~ msgid "Date of completion"
+#~ msgstr "תאריך סיום התואר"
+
+#~ msgid "Avarage"
+#~ msgstr "ממוצע עדכני לתואר"
+
+#~ msgid "Job Type"
+#~ msgstr "סוג משרה"
+
+#~ msgid "Job ID"
+#~ msgstr "מספר משרה"
+
+#~ msgid "Job field"
+#~ msgstr "תחום עיסוק"
+
+#, fuzzy
+#~| msgid "Job Location"
+#~ msgid "Location"
+#~ msgstr "מיקום גיאוגרפי"
+
+#~ msgid "Search results intro"
+#~ msgstr "הקדמה לתוצאות חיפוש"
+
+#~ msgid "Job Title"
+#~ msgstr "שם משרה"
+
+#~ msgid "Submited Jobs"
+#~ msgstr "משרות שהוגשו"
+
+#~ msgid "CVs"
+#~ msgstr "קורות חיים"
+
+#~ msgid "Additional Files"
+#~ msgstr "קבצים נוספים"
+
+#~ msgid "New Jobs"
+#~ msgstr "משרות חדשות"
+
+#~ msgid "Found by the smart agent"
+#~ msgstr "שנמצאו ע”י הסוכן החכם"
+
+#~ msgid "Endless opportunities in Elbit"
+#~ msgstr "האנשים שלנו"
+
+#~ msgid "To your next opportunity"
+#~ msgstr "לחיפוש ההזדמנות הבאה שלך"
+
+#~ msgid "About the job"
+#~ msgstr "קצת על התפקיד"
+
+#~ msgid "What we are looking for?"
+#~ msgstr "מה אנחנו מחפשים?"
+
+#~ msgid "You might intrest in"
+#~ msgstr "אולי יעניין אותך גם לדעת"
+
+#~ msgid "The CV was sent to our recruit center."
+#~ msgstr "‫קורות החיים מועברים לבדיקת מרכז הגיוס שלנו."
+
+#~ msgid "If a job match will be found, we will contact you soon."
+#~ msgstr "במידה ותימצא התאמה למשרות ניצור קשר בקרוב."
+
+#~ msgid "No CV was not submited"
+#~ msgstr "לא נשלחו קורות חיים"
+
+#~ msgid "yes"
+#~ msgstr "כן"
+
+#~ msgid "no"
+#~ msgstr "לא"
+
+#~ msgid "Have additional citizenship"
+#~ msgstr "האם יש לך אזרחות אחרת"
+
+#~ msgid "Strong Side"
+#~ msgstr "הצד החזק שלי הוא"
+
+#~ msgid "Have relative"
+#~ msgstr " האם יש לך קרוב/ת משפחה העובד/ת בחברה"
+
+#~ msgid "Company worker relation"
+#~ msgstr "קרבה לעובד חברה"
+
+#~ msgid "Type Here"
+#~ msgstr "לדוגמא: משרת סייבר בבאר שבע"
+
+#~ msgid "Submit to general pool"
+#~ msgstr "הגש קו\"ח למאגר כללי"
+
+#~ msgid "clear"
+#~ msgstr "נקה/י חיפוש"
+
+#~ msgid "Without selecting job"
+#~ msgstr "ללא בחירת משרה"
+
+#~ msgid "To selected jobs"
+#~ msgstr "למשרות המסומנות"
+
+#~ msgid "Completion Date"
+#~ msgstr "תאריך סיום"
+
+#~ msgid "Citizenship"
+#~ msgstr "סוג אזרחות"
+
+#~ msgid "Job ID: "
+#~ msgstr "מזהה משרה: "
+
+#~ msgid "ID: "
+#~ msgstr "ת.ז: "
+
+#~ msgid "Missing"
+#~ msgstr "חסר"
+
+#~ msgid "Dropbox"
+#~ msgstr "Dropbox"
+
+#~ msgid "Google Drive"
+#~ msgstr "Google Drive"
+
+#~ msgid "Prefered file types doc, dox, pdf"
+#~ msgstr "סוגי קבצים רצויים doc, dox, pdf"
+
+#~ msgid "Job Search"
+#~ msgstr "חיפוש משרה"
+
+#~ msgid "Search By Keyword or Job Number"
+#~ msgstr "Search By Keyword or Job Number"
+
+#, fuzzy
+#~| msgid "Job Type"
+#~ msgid "Job Name"
+#~ msgstr "היקף משרה"

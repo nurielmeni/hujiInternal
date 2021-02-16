@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hello Elementor Child\n"
+"POT-Creation-Date: 2020-12-05 14:00+0200\n"
+"PO-Revision-Date: 2020-12-05 14:05+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: functions.php:120
+msgid "Header"
+msgstr "כותרת"
+
+#: functions.php:121
+msgid "Mobile"
+msgstr "נייד"
+
+#: functions.php:183
+msgid "Footer"
+msgstr "פוטר"
+
+#: functions.php:189
+msgid "Footer Right Title"
+msgstr "כותרת פוטר ימין"
+
+#: functions.php:195
+msgid "Footer Right"
+msgstr "פוטר ימין"
+
+#: functions.php:202
+msgid "Footer Center Title"
+msgstr "כותרת פוטר מרכז"
+
+#: functions.php:208
+msgid "Footer Center"
+msgstr "פוטר מרכז"
+
+#: functions.php:215
+msgid "Footer Left Title"
+msgstr "כותרת פוטר שמאל"
+
+#: functions.php:221
+msgid "Footer Left"
+msgstr "פוטר שמאל"
+
+#: template-parts/404.php:15
+msgid "The page can&rsquo;t be found."
+msgstr "לא ניתן למצוא את הדף."
+
+#: template-parts/404.php:19
+msgid "It looks like nothing was found at this location."
+msgstr "נראה כאילו שום דבר לא נמצא במיקום הזה."
+
+#: template-parts/header.php:23
+msgid "Home"
+msgstr "בית"
+
+#. Theme Name of the plugin/theme
+msgid "Hello Elementor Child"
+msgstr "שלום אלמנטור תבנית בן"
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/elementor/hello-theme/"
+msgstr "‫https://github.com/elementor/hello-theme/"
+
+#. Description of the plugin/theme
+msgid ""
+"Hello Elementor Child is a child theme of Hello Elementor, created by "
+"Elementor team"
+msgstr ""
+"שלום אלמנטור תבנית בן היא תבנית בת של שלום אלמנטור, נוצר על ידי צוות "
+"Elementor"
+
+#. Author of the plugin/theme
+msgid "Elementor Team"
+msgstr "צוות אלמנטור"
+
+#. Author URI of the plugin/theme
+msgid "https://elementor.com/"
+msgstr "‫https://elementor.com/"

@@ -1,0 +1,121 @@
+@media (max-width: 388px) {
+    section.popup.backdrop .card-wrapper > div {
+        width: 100%;
+    }
+}
+
+@media (max-width: 680px) {
+    .site-main.job-details .content-job,
+    .site-main.job-details .disclaimer,
+    .site-main.job-details .job-header {
+        padding: 1rem 2rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .site-main.job-details .job-header {
+        flex-direction: column;
+    }
+
+    .site-main.job-details .job-header .info-part {
+        flex-direction: row;
+    }
+
+    .site-main.job-details .job-header .info-part .label {
+        min-width: 6rem;
+    }
+
+}
+
+@media (max-width: 767.99px) {
+    /* Search Bar */
+    .nls-search-wrapper .container.content {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        position: relative !important;
+        bottom: 0 !important;
+    }
+
+    .nls-search-wrapper .container form.nls-search.rounded {
+        border-radius: 0;
+        flex-wrap: wrap;
+        padding: 2.5rem 1rem;
+    }
+
+    .nls-search-wrapper .container form.nls-search .nls-field {
+        width: 48%;
+        margin-bottom: 1rem;
+    }
+
+    .nls-search-wrapper .container form.nls-search .nls-field.professional-fields,
+    .nls-search-wrapper .container form.nls-search .nls-field.submit {
+        width: 100%;
+    }
+    /* End - Search Bar */
+
+    
+    /* Search results - page */
+    .post-246 .page-content {
+        background-color: #ffffff;
+        background-color: var(--bg-width);
+    }
+
+    section#search-result-jobs .job-wrap .top-wrap {
+        color: #490f35 !important;
+        color: var(--color-primary) !important;
+        background-color: #ffffff !important;
+        background-color: var(--bg-width) !important;
+        flex-wrap: wrap;
+    }
+
+    section#search-result-jobs .job-wrap .top-wrap .last-date.push-left {
+        margin: 1rem;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    section#search-result-jobs .job-wrap .top-wrap .last-date.push-left label {
+        margin-left: 1rem;
+    }
+
+    section#search-result-jobs .main-wrap .right .description,
+    section#search-result-jobs .main-wrap button.huji-btn.share,
+    section#search-result-jobs .main-wrap .share-widget {
+        display: none;
+    }
+
+    section#search-result-jobs .main-wrap {
+        min-height: 0;
+        padding-right: 1rem;
+    }
+
+    section#search-result-jobs {
+        padding: 1rem !important;
+    }
+
+    section#search-result-jobs .main-wrap button.huji-btn.submit-cv {
+        min-width: 100px;
+    }
+    /* End - Search results - page */
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    section#search-result-jobs .main-wrap {
+        flex-direction: column !important;
+    }
+
+    section#search-result-jobs .main-wrap .footer {
+        flex-direction: row !important;
+        margin-top: 2rem !important;
+    }
+}
+
+@media (min-width: 1000px) {
+    .site-main.job-details .job-header .info-part {
+        flex-direction: row;
+    }
+
+    .site-main.job-details .job-header .info-part .label {
+        padding-left: 0.5rem;
+    }
+}

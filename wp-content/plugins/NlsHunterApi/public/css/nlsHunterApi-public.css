@@ -1,0 +1,433 @@
+input[type='submit'].icon,
+button.icon {
+  padding-left: 2.5rem;
+}
+
+input[type='submit'].icon.search-white,
+button .icon.search-white {
+  background-image: url('../iconsSVG/search-white.svg');
+  background-repeat: no-repeat;
+  background-position: center left calc(50% - 1.5rem);
+  background-size: 1em;
+}
+
+/* Popup */
+/************************** POPUP *******************************/
+section.popup.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+  z-index: 9999;
+  background-color: rgba(73, 15, 53, 0.65);
+}
+
+section.popup.backdrop .card-wrapper {
+  width: 590px;
+  margin: auto;
+}
+
+section.popup.backdrop .card-wrapper > div {
+  width: 388px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+section.popup.backdrop .card-wrapper .card-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: relative;
+  font-size: 1.25rem;
+  width: 100%;
+}
+
+section.popup.backdrop .card-wrapper .card-header span.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  line-height: 1rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+/* End - Popup */
+
+/* Search Module */
+.nls-search-wrapper {
+  position: relative;
+}
+
+.nls-search-wrapper .container {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: -68px;
+}
+
+.nls-search-wrapper .container form.nls-search {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 12%;
+  background-color: var(--color-white);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+form.nls-search .SumoSelect p.CaptionCont.SelectBox,
+form.nls-search div.nls-field.text input[type='text'] {
+  background: transparent;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+}
+
+form.nls-search input[type='submit'] {
+  height: 56px;
+  width: 100%;
+}
+
+form.nls-search .nls-field {
+  width: 22%;
+}
+
+form.nls-search .nls-field.professional-fields {
+  width: 30%;
+}
+
+.nls-search-wrapper.relative .container.content {
+  position: relative;
+  margin-bottom: 2rem;
+  bottom: 0;
+  margin-top: 1px;
+}
+/* End - Search Module */
+
+/* Start - Search Results Module */
+.post-246 .page-content {
+  background-color: #f5f5f5;
+  background-color: var(--color-light-gray);
+}
+
+.nls-search-results-module .top-title > div {
+  padding: 6px 10%;
+}
+
+.nls-search-results-module .actions {
+  margin-bottom: 1rem;
+}
+
+.nls-search-results-module .actions a:hover {
+  color: #ffffff;
+  color: --var(color-white);
+}
+
+section#search-result-jobs {
+  padding: 1rem 10%;
+  background-color: #ffffff;
+  background-color: var(--color-white);
+}
+
+section#search-result-jobs .job-wrap {
+  margin: 1rem 0;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+section#search-result-jobs .job-wrap .top-wrap {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 1rem;
+}
+
+section#search-result-jobs input[type='checkbox'] {
+  margin-right: -1.15rem;
+}
+
+section#search-result-jobs .sr-select {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+section#search-result-jobs .sr-select label {
+  font-size: 1.25rem;
+}
+
+section#search-result-jobs .sr-select p.kampus {
+  margin: 0;
+}
+
+section#search-result-jobs .main-wrap {
+  padding: 1rem 2rem 1rem 1rem;
+  min-height: 10rem;
+}
+
+section#search-result-jobs .main-wrap .right {
+  padding-left: 1rem;
+}
+
+section#search-result-jobs .main-wrap .more {
+  margin-top: 1rem;
+  text-decoration: underline;
+}
+
+section#search-result-jobs .main-wrap button.huji-btn.submit-cv,
+section#search-result-jobs .main-wrap .share-widget {
+  min-width: 200px;
+}
+
+/* End - Search results Module */
+
+/* Share Widget */
+.share-widget {
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 16px;
+  position: relative;
+}
+
+.share-widget .flash-message {
+  position: absolute;
+  top: calc(2rem * -1);
+  color: #5cb794;
+  color: var(--color-success);
+}
+
+.share-widget a {
+  display: flex;
+}
+
+.share-widget a img {
+  width: 1.7rem;
+}
+/* End - Share Widget */
+
+/* Apply Form */
+.nls-apply-for-jobs.modal > .modal-content {
+  margin: auto;
+  padding: 2rem 1rem;
+  max-width: 388px;
+  box-sizing: border-box;
+}
+
+section.popup .nls-apply-field,
+.nls-apply-for-jobs.modal .nls-apply-field {
+  padding-bottom: 1.75rem;
+}
+
+section.popup .nls-apply-field input,
+.nls-apply-for-jobs.modal .nls-apply-field input {
+  border-radius: 8px;
+}
+
+section.popup .nls-apply-field.browse input,
+.nls-apply-for-jobs.modal .nls-apply-field.browse input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+section.popup .nls-apply-field.browse button,
+.nls-apply-for-jobs.modal .nls-apply-field.browse button {
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid #707070;
+  border-left: none;
+  background-color: #707070;
+  background-color: var(--color-gray);
+  color: #ffffff;
+  color: var(--color-white);
+}
+
+section.popup .help-block,
+.nls-apply-for-jobs.modal .help-block {
+  margin-top: 0.25rem;
+  color: #cc3366;
+  color: var(--color-danger);
+}
+
+section.popup label,
+.nls-apply-for-jobs.modal label {
+  color: #490f35;
+  color: var(--color-primary);
+  padding-bottom: 0.75rem;
+  font-weight: bold;
+}
+
+section.popup .options-wrapper,
+.nls-apply-for-jobs.modal .options-wrapper {
+  display: flex;
+}
+
+.nls-apply-for-jobs.modal .options-wrapper .radio-option {
+  padding-left: 1rem;
+}
+
+.nls-apply-for-jobs.modal .nls-apply-field.select .SelectBox {
+  border-radius: 8px;
+  background-color: white;
+  background-color: var(--color-white);
+  border: 1px solid #707070;
+  border: 1px solid var(--color-gray);
+  height: 42px;
+}
+
+.nls-apply-for-jobs.modal .nls-apply-field.select .SelectBox > span {
+  line-height: 30px;
+}
+
+.nls-apply-for-jobs.modal
+  .nls-apply-field.select
+  .SelectBox
+  .SumoSelect.open
+  > .optWrapper {
+  top: 44px;
+}
+
+.nls-apply-for-jobs.modal
+  .nls-apply-field.select
+  .SumoSelect
+  .optWrapper
+  label {
+  padding: 5px 0;
+}
+
+section.popup button.apply-cv,
+.nls-apply-for-jobs.modal .modal-footer button.apply-cv {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+/* End Apply Form */
+
+/* Aplly Response */
+#apply-response {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 2rem 0;
+  border-radius: 8px;
+  min-height: 140px;
+}
+
+#apply-response .submit-response > p {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* End - Aplly Response */
+
+/* Job Details */
+.site-main.job-details section.apply-form {
+  margin-top: 2rem;
+}
+
+.site-main.job-details {
+  background-color: #f5f5f5;
+  background-color: var(--color-light-gray);
+}
+
+.site-main.job-details .banner.job-details label {
+  padding-left: 1rem;
+}
+
+.site-main.job-details .banner.job-details h1 {
+  font-size: 2rem;
+  margin-top: 1.75rem;
+}
+
+.site-main.job-details .actions {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.site-main.job-details .actions button.icon-right {
+  background-image: url('../iconsSVG/angle-arrow-right.svg');
+}
+
+.site-main.job-details .content-job,
+.site-main.job-details .disclaimer,
+.site-main.job-details .job-header {
+  padding: 1rem 100px;
+}
+
+.site-main.job-details .disclaimer ul {
+  padding: 0;
+}
+
+.site-main.job-details .disclaimer section.content {
+  font-size: 0.85rem;
+}
+
+.site-main.job-details .content-job {
+  margin-bottom: 2rem;
+}
+
+.site-main.job-details .content-job h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.site-main.job-details .page-content,
+.site-main.job-details .main-content > .container {
+  padding-bottom: 2rem;
+  border-radius: 16px;
+}
+
+.site-main.job-details .job-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* End - Job Details */
+
+/** Job Details - Actions **/
+.site-main.job-details .bottom.actions {
+  margin-top: 2rem;
+}
+
+.site-main.job-details .bottom.actions button {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.social-share {
+  position: relative;
+}
+
+.social-share ul {
+  padding: 0;
+}
+
+.social-share ul li {
+  list-style: none;
+  color: #006171;
+  padding: 6px 6px 0 6px;
+  margin: 0.5rem;
+}
+
+.social-share .flash-message {
+  position: absolute;
+  top: 2.9rem;
+  font-size: 0.85rem;
+  color: #5cb794;
+  color: var(--color-success);
+}
+
+input[name='cellNumber'] {
+  width: calc(100% - 7rem);
+}
+
+.nls-apply-field input[name='cellPrepend'] {
+  width: 5rem;
+  direction: ltr;
+  text-align: right;
+}
+
+.nls-apply-field span.cell-devider {
+  width: 1.25rem;
+  text-align: center;
+  font-size: 1.7rem;
+}
+/** End - Job Details - Actions **/
