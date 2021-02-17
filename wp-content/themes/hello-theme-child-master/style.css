@@ -598,11 +598,14 @@ section.huji-int-cards {
         max-width: 100% !important;
     }
 
+}
+
+@media (max-width: 767.99px) {
     section.content.huji-int-cards {
         width: calc(100% - 2rem);
         flex-wrap: wrap;
     }
-
+    
     section.content.huji-int-cards .huji-card {
         width: 100%;
         max-width: 100%;
