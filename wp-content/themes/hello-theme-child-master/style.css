@@ -613,6 +613,7 @@ section.huji-int-cards {
     .wp-block-columns .wp-block-column.content {
         width: calc(100% - 2rem);
         max-width: 100%;
+        flex-basis: 100% !important;
     }
 }
 
