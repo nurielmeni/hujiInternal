@@ -580,7 +580,8 @@ section.huji-int-cards {
 }
 
 @media (max-width: 767.99px) {
-    .content.block-text-image {
+    .content.block-text-image,
+    section.content.huji-int-cards {
         display: flex;
         flex-direction: column;
         padding-right: 0 !important;
@@ -611,7 +612,7 @@ section.huji-int-cards {
 }
 @media (min-width: 600px) and (max-width: 781px) {
     .wp-block-columns .wp-block-column.content {
-        width: calc(100% - 2rem);
+        width: 100%;
         max-width: 100%;
         flex-basis: 100% !important;
     }
