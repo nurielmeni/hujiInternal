@@ -580,8 +580,7 @@ section.huji-int-cards {
 }
 
 @media (max-width: 767.99px) {
-    .content.block-text-image,
-    section.content.huji-int-cards {
+    .content.block-text-image {
         display: flex;
         flex-direction: column;
         padding-right: 0 !important;
@@ -600,7 +599,7 @@ section.huji-int-cards {
     }
 
     section.content.huji-int-cards {
-        
+        max-width: 500px !important;
         flex-wrap: wrap;
     }
     
