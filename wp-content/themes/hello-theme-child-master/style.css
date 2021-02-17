@@ -601,6 +601,7 @@ section.huji-int-cards {
     section.content.huji-int-cards {
         max-width: 500px !important;
         flex-wrap: wrap;
+        padding: 0;
     }
     
     section.content.huji-int-cards .huji-card {
