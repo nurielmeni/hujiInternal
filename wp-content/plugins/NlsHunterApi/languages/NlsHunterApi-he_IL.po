@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NlsHunterApi\n"
 "POT-Creation-Date: 2021-03-03 15:07+0200\n"
-"PO-Revision-Date: 2021-03-03 15:58+0200\n"
+"PO-Revision-Date: 2021-03-03 16:08+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -181,7 +181,7 @@ msgstr "תעודת זהות"
 
 #: public/class-NlsHunterApi-public.php:273 public/partials/popup.php:10
 msgid "Email"
-msgstr "דוא״ל"
+msgstr "דוא״ל אוניברסיטאי"
 
 #: public/class-NlsHunterApi-public.php:274 public/partials/applyForJobs.php:62
 msgid "Cell"
