@@ -85,6 +85,15 @@ class NlsHunterApi_model {
         ];
     }
 
+    public function getEmploymentStatus() {
+        return [
+            __('Temporary', 'NlsHunterApi') => __('Temporary', 'NlsHunterApi'),
+            __('Permanent', 'NlsHunterApi') => __('Permanent', 'NlsHunterApi'),
+            __('Hourly', 'NlsHunterApi') => __('Hourly', 'NlsHunterApi'),
+            __('Academic', 'NlsHunterApi') => __('Academic', 'NlsHunterApi'),
+        ];
+    }
+
     public function getCities() {
         if (isset($this->cities) && is_array($this->cities)) return $this->cities;
         $citiesList = $this->nlsDirectory->getListByName('Cities');

@@ -71,20 +71,6 @@
                 </div>   
                 
                 <!--  HAS WORKED -->
-                <div class="nls-apply-field">
-                    <label><?= __('Worked before', 'NlsHunterApi') ?></label>
-                    <div class="options-wrapper">
-                        <div class="radio-option">
-                            <input id="workedBeforeYes" type="radio" name="workedBefore" value="yes" validator="radioRequired">
-                            <label for="workedBeforeYes"><?= __('Yes', 'NlsHunterApi') ?></label>
-                        </div>
-                        <div class="radio-option">
-                            <input id="workedBeforeNo" type="radio" name="workedBefore" value="no">
-                            <label for="workedBeforeNo"><?= __('No', 'NlsHunterApi') ?></label>
-                        </div>
-                    </div>
-                    <div class="help-block"></div>
-                </div>                    
                 
                 <!--  RELATIVE -->
                 <div class="nls-apply-field">
@@ -153,27 +139,13 @@
                     <div class="help-block"></div>
                 </div>                    
 
-                <!--  REFERER -->
-                <?php if (isset($referers)) : ?>
+                <!--  REFERER / Employment Status -->
+                <?php if (isset($employmentStatus)) : ?>
                     <div class="nls-apply-field options select">
-                        <label for="referer"><?= __('How did you get to us', 'NlsHunterApi') ?></label>
-                        <?= NlsHelper::htmlSelect("referer", "nls-search referer", false, $referers) ?>
+                        <label for="referer"><?= __('Employment Status', 'NlsHunterApi') ?></label>
+                        <?= NlsHelper::htmlSelect("employment-status", "nls-search employment-status", false, $employmentStatus) ?>
                         <div class="nls-validation"></div>
                     </div>
-
-                    <!--  REFERER NAME -->
-                    <div class="nls-apply-field referer-show-freind" style="display: none;">
-                        <label for="refererName"><?= __('Referer Name', 'NlsHunterApi') ?></label>
-                        <input 
-                        type="text" 
-                        name="refererName" 
-                        class=""                  
-                        validator="required"
-                        aria-invalid="false" 
-                        aria-required="true">
-                        <div class="help-block"></div>
-                    </div>       
-
                 <?php endif; ?>
 
                 <!--  FILE NAME -->

@@ -116,7 +116,7 @@ class NlsHunterApi_modules {
         /**
          * @referer Array, the options for referer
          */
-        $referers = $this->model->getReferers();
+        $employmentStatus = $this->model->getEmploymentStatus();
 
         $searchPageUrl = $this->model->getPageUrl(NlsHunterApi_Admin::NLS_SEARCH_PAGE);
         $jobDetailsPageUrl = $this->model->getPageUrl(NlsHunterApi_Admin::NLS_JOB_DETAILS_PAGE);
@@ -155,7 +155,7 @@ class NlsHunterApi_modules {
         $jobCode = $jobDetails['JobCode'];
         $job = count($jobResult) > 0 ? $jobResult[$jobCode] : [];
         $supplierId = $this->model->get_supplierId();
-        $referers = $this->model->getReferers();
+        $employmentStatus = $this->model->getEmploymentStatus();
 
 
         ob_start();

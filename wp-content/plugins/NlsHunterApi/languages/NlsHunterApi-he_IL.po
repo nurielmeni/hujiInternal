@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NlsHunterApi\n"
-"POT-Creation-Date: 2020-12-29 11:56+0200\n"
-"PO-Revision-Date: 2020-12-29 11:58+0200\n"
+"POT-Creation-Date: 2021-03-03 15:07+0200\n"
+"PO-Revision-Date: 2021-03-03 15:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -54,54 +54,70 @@ msgstr "רשתות חברתיות"
 msgid "Other"
 msgstr "אחר"
 
-#: includes/class-NlsHunterApi-model.php:153
+#: includes/class-NlsHunterApi-model.php:90
+msgid "Temporary"
+msgstr "ארעי"
+
+#: includes/class-NlsHunterApi-model.php:91
+msgid "Permanent"
+msgstr "קבוע"
+
+#: includes/class-NlsHunterApi-model.php:92
+msgid "Hourly"
+msgstr "לפי שעות"
+
+#: includes/class-NlsHunterApi-model.php:93
+msgid "Academic"
+msgstr "אקדמי"
+
+#: includes/class-NlsHunterApi-model.php:168
 msgid "Could not init Card Services."
 msgstr "אין אפשרות להתחבר לשירותי Card"
 
-#: includes/class-NlsHunterApi-model.php:154
+#: includes/class-NlsHunterApi-model.php:169
 msgid "Error: Card Services: "
 msgstr "שגיאה: שירותי Card"
 
-#: includes/class-NlsHunterApi-model.php:172
+#: includes/class-NlsHunterApi-model.php:187
 msgid "Could not init Directory Services."
 msgstr "אין אפשרות להתחבר לשירותי Directory"
 
-#: includes/class-NlsHunterApi-model.php:173
+#: includes/class-NlsHunterApi-model.php:188
 msgid "Error: Directory Services: "
 msgstr "‫שגיאה: שירותי Directory"
 
-#: includes/class-NlsHunterApi-model.php:191
+#: includes/class-NlsHunterApi-model.php:206
 msgid "Could not init Search Services."
 msgstr "אין אפשרות להתחבר לשירותי Search"
 
-#: includes/class-NlsHunterApi-model.php:192
+#: includes/class-NlsHunterApi-model.php:207
 msgid "Error: Search Services: "
 msgstr "‫Error: Search Services: "
 
-#: includes/class-NlsHunterApi-model.php:264
+#: includes/class-NlsHunterApi-model.php:279
 msgid "Page was not provided (Hunter Plugin Admin) - "
 msgstr "דף תוצאות חיפוש לא סופק (ניהול תוסף האנטר) - "
 
-#: includes/class-NlsHunterApi-model.php:265
+#: includes/class-NlsHunterApi-model.php:280
 #: includes/class-NlsHunterApi-modules.php:72
 msgid "Missing Settings"
 msgstr "הגדרות חסרות"
 
-#: includes/class-NlsHunterApi-model.php:287
+#: includes/class-NlsHunterApi-model.php:302
 msgid "Could not connect to Hunter Directory Services"
 msgstr "אין אפשרות להתחבר לשירותי האנטר"
 
-#: includes/class-NlsHunterApi-model.php:288
+#: includes/class-NlsHunterApi-model.php:303
 msgid "Authentication Error"
 msgstr "שגיאת הזדהות"
 
-#: includes/class-NlsHunterApi-model.php:405
-#: includes/class-NlsHunterApi-model.php:416
+#: includes/class-NlsHunterApi-model.php:420
+#: includes/class-NlsHunterApi-model.php:431
 msgid "Job Code is missing (or not found)."
 msgstr "מזהה משרה חסר (לא סופק)"
 
-#: includes/class-NlsHunterApi-model.php:406
-#: includes/class-NlsHunterApi-model.php:417
+#: includes/class-NlsHunterApi-model.php:421
+#: includes/class-NlsHunterApi-model.php:432
 msgid "Could not display Job Details"
 msgstr "לא היתה אפשרות להציג פרטי משרה"
 
@@ -171,36 +187,33 @@ msgstr "דוא״ל"
 msgid "Cell"
 msgstr "טלפון נייד"
 
-#: public/class-NlsHunterApi-public.php:275 public/partials/applyForJobs.php:75
+#: public/class-NlsHunterApi-public.php:275
 msgid "Worked before"
 msgstr "האם עבדת בעבר/עובד/ת כעת באוניברסיטה?"
 
-#: public/class-NlsHunterApi-public.php:276 public/partials/applyForJobs.php:92
+#: public/class-NlsHunterApi-public.php:276 public/partials/applyForJobs.php:78
 msgid "Relatives in the company?"
 msgstr "האם יש לך קרובי משפחה באוניברסיטה?"
 
-#: public/class-NlsHunterApi-public.php:277
-#: public/partials/applyForJobs.php:110
+#: public/class-NlsHunterApi-public.php:277 public/partials/applyForJobs.php:96
 msgid "Relative Name"
 msgstr "שם קרוב/ת משפחה"
 
 #: public/class-NlsHunterApi-public.php:278
-#: public/partials/applyForJobs.php:123
+#: public/partials/applyForJobs.php:109
 msgid "Relation"
 msgstr "קרבה משפחתית"
 
 #: public/class-NlsHunterApi-public.php:279
-#: public/partials/applyForJobs.php:136
+#: public/partials/applyForJobs.php:122
 msgid "Required Certificates"
-msgstr "האם ברשותך כל התעודות הדרושות?"
+msgstr "האם ברשותך כל התעודות הדרושות לתפקיד?"
 
 #: public/class-NlsHunterApi-public.php:280
-#: public/partials/applyForJobs.php:159
 msgid "How did you get to us"
-msgstr "איך הגעת אלינו?"
+msgstr "סטטוס העסקה"
 
 #: public/class-NlsHunterApi-public.php:281
-#: public/partials/applyForJobs.php:166
 msgid "Referer Name"
 msgstr "שם"
 
@@ -208,64 +221,66 @@ msgstr "שם"
 msgid "Supplier Id"
 msgstr "מזהה ספק"
 
-#: public/class-NlsHunterApi-public.php:312
+#: public/class-NlsHunterApi-public.php:314
 msgid "CV without a Job"
 msgstr "קורות חיים ללא משרה"
 
-#: public/class-NlsHunterApi-public.php:379
+#: public/class-NlsHunterApi-public.php:381
 msgid "Applicant form data: "
 msgstr "פרטי טופס עבור מועמד: "
 
-#: public/class-NlsHunterApi-public.php:400
+#: public/class-NlsHunterApi-public.php:402
 msgid "CV Applied from Jobs Site"
 msgstr "קורות חיים שהוגשו דרך אתר משרות"
 
-#: public/class-NlsHunterApi-public.php:435
+#: public/class-NlsHunterApi-public.php:437
 msgid "Thenk you for applying, the form submited successfully!"
 msgstr "קורות החיים הוגשו בהצלחה.<br>תודה על פנייתך!"
 
-#: public/class-NlsHunterApi-public.php:442
+#: public/class-NlsHunterApi-public.php:444
 msgid "Error occured"
 msgstr "התרחשה שגיאה"
 
-#: public/class-NlsHunterApi-public.php:443
+#: public/class-NlsHunterApi-public.php:445
 msgid "The cv could not be sent successfully!"
 msgstr "קורות החיים לא נשלחו, נסה/י שוב מאוחר יותר!"
 
 #: public/partials/applyForJobs.php:49
 msgid "email"
-msgstr "דוא״ל"
+msgstr "דוא״ל אוניברסיטאי"
 
-#: public/partials/applyForJobs.php:79 public/partials/applyForJobs.php:98
-#: public/partials/applyForJobs.php:146
-msgid "Yes"
-msgstr "כן"
-
-#: public/partials/applyForJobs.php:83 public/partials/applyForJobs.php:102
-#: public/partials/applyForJobs.php:150
-msgid "No"
-msgstr "לא"
-
-#: public/partials/applyForJobs.php:93
+#: public/partials/applyForJobs.php:79
 msgid "Relatives in the company help text"
 msgstr ""
 "‫קרוב משפחה הורים וילדים, בני זוג (כולל ידועים בציבור), אח ואחות, גיס וגיסה, "
 "חותן וחותנת, חתן וכלה, חם וחמות, בן/בת אח ואחות, דוד ודודה, בן/בת דוד ודודה, "
 "סבא וסבתא, נכד ונכדה, וכן קרובים “חורגים” באותם יחסי קרבה."
 
-#: public/partials/applyForJobs.php:182
+#: public/partials/applyForJobs.php:84 public/partials/applyForJobs.php:132
+msgid "Yes"
+msgstr "כן"
+
+#: public/partials/applyForJobs.php:88 public/partials/applyForJobs.php:136
+msgid "No"
+msgstr "לא"
+
+#: public/partials/applyForJobs.php:145
+msgid "Employment Status"
+msgstr "סטטוס העסקה"
+
+#: public/partials/applyForJobs.php:154
 msgid "Append CV File"
 msgstr "צרף קובץ קורות חיים (doc/pdf/jpeg)"
 
-#: public/partials/applyForJobs.php:184 public/partials/applyForJobs.php:202
+#: public/partials/applyForJobs.php:156 public/partials/applyForJobs.php:174
 msgid "Browse File"
 msgstr "בחר/י קובץ"
 
-#: public/partials/applyForJobs.php:200
+#: public/partials/applyForJobs.php:172
 msgid "Other Files"
 msgstr "העלאת מסמכים נוספים (תעודות השכלה/שמות ממליצים)"
 
-#: public/partials/applyForJobs.php:217 public/partials/hotJobs.php:10
+#: public/partials/applyForJobs.php:190 public/partials/hotJobs.php:10
 #: public/partials/searchResultsMobile.php:10 templates/job.php:28
 msgid "Submit CV"
 msgstr "הגשת מועמדות"
