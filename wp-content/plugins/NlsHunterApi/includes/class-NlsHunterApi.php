@@ -30,12 +30,13 @@
 require_once 'class-NlsHunterApi-model.php';
 require_once 'class-NlsHunterApi-modules.php';
 
-class NlsHunterApi {
-        const SEARCH_PAGE_SLUG = 'search_page';
-        const SEARCH_RESULTS_PAGE_SLUG = 'search_results_page';
-        const JOB_DETAILS_PAGE_SLUG = 'job_deatails_page';
+class NlsHunterApi
+{
+	const SEARCH_PAGE_SLUG = 'search_page';
+	const SEARCH_RESULTS_PAGE_SLUG = 'search_results_page';
+	const JOB_DETAILS_PAGE_SLUG = 'job_deatails_page';
 
-        /**
+	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
@@ -100,60 +101,146 @@ class NlsHunterApi {
 	 *
 	 * @since    2.0.0
 	 */
-	public function __construct() {
-		if ( defined( 'NlsHunterApi_VERSION' ) ) {
+	public function __construct()
+	{
+		// Make sure the user is validated and can login
+		if (defined('NlsHunterApi_VERSION')) {
 			$this->version = NlsHunterApi_VERSION;
 		} else {
 			$this->version = '2.0.0';
 		}
 		$this->NlsHunterApi = 'NlsHunterApi';
 
+		add_action('plugins_loaded', [$this, 'action_validate_user']);
+
 		$this->load_dependencies();
+
+
 		$this->set_locale();
-		
+
 		// Instantiate the modules class
 		try {
 			$this->model = new NlsHunterApi_model();
 			$this->model->initCardService();
-			
+
 			$this->modules = new NlsHunterApi_modules($this->model);
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->addErrorToPage($e->getMessage(), "Error: Could not create Niloos Module.");
 			return null;
 			//throw new \Exception("Error: Could not create Niloos Module.\n" . $e->getMessage());
 		}
 
-		$this->define_admin_hooks();		
+		$this->define_admin_hooks();
 		$this->define_shortcodes();
 		$this->define_public_hooks();
-
-		/**
-		 *  Load the search results or the job details
-		 *  If Search Results page loads the jobs to $searchResultJobs
-		 *  If JobDetails Loads the Job Data to $jobDetails
-		 * */ 
-		
 	}
 
-    public function addFlash($message, $subject = '', $type = 'info') {
-        $flash = '<div class="nls-flash-message-wrapper flex">';
-        $flash .= '<div class="nls-flash-message ' . $type . '">';
-        $flash .= '<div><strong>' . $subject . '</strong> ' . $message . '</div><strong>x</strong>';
-        $flash .= '</div></div>';
-        return $flash;
-    }
+	public function action_validate_user()
+	{
+		$ip     = $_SERVER['REMOTE_ADDR'];//$_POST['ip'];
+		$zehut  = $_POST['zehut'];
 
-	public function addErrorToPage($message, $subject) {
-		add_action('the_post', function() use ($message, $subject) {
+		if ($ip === '172.18.0.1' && $zehut !== null) {
+			$token = $this->huji_auth_update($ip, $zehut);
+			$status = $token ? 200 : 403;
+			wp_send_json(['token' => $token], $status);
+			wp_die();
+		}
+
+		$token = $this->getBearerToken();
+		if ($this->valid_token($token)) return;
+
+		wp_redirect('https://huji.hunterhrms.com/');
+		exit;
+	}
+
+	private function valid_token($token) {
+		global $wpdb;
+		$table_name = $wpdb->prefix . "auth_token";
+		$sqlQuery = 'SELECT * FROM ' . $table_name . ' WHERE token="' . $token;
+
+		$row = $wpdb->get_row($sqlQuery);
+		return $row && $row->token === $token;
+	}
+
+	private function huji_auth_update($ip, $zehut) {
+		$ts 	= time();
+		$token = hash('ripemd160', $ip.$zehut.$ts);
+  
+		global $wpdb;
+		$table_name = $wpdb->prefix . "auth_token";
+  
+		$res = $wpdb->replace($table_name, [
+			'ip' => $ip,
+			'zehut' => $zehut,
+			'ts' => $ts,
+			'token' => $token
+			],
+			['%s', '%s', '%d', '%s']
+		);
+			
+		return $res === false ? null : $token;
+	}
+	/** 
+	 * Get header Authorization
+	 * */
+	private function getAuthorizationHeader()
+	{
+		$headers = null;
+		if (isset($_SERVER['Authorization'])) {
+			$headers = trim($_SERVER["Authorization"]);
+		} else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
+			$headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
+		} elseif (function_exists('apache_request_headers')) {
+			$requestHeaders = apache_request_headers();
+			// Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care about capitalization for Authorization)
+			$requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)), array_values($requestHeaders));
+			//print_r($requestHeaders);
+			if (isset($requestHeaders['Authorization'])) {
+				$headers = trim($requestHeaders['Authorization']);
+			}
+		}
+		return $headers;
+	}
+
+	/**
+	 * get access token from header
+	 * */
+	private function getBearerToken()
+	{
+		$headers = $this->getAuthorizationHeader();
+		// HEADER: Get the access token from the header
+		if (!empty($headers)) {
+			if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
+				return $matches[1];
+			}
+		}
+		return null;
+	}
+
+
+	public function addFlash($message, $subject = '', $type = 'info')
+	{
+		$flash = '<div class="nls-flash-message-wrapper flex">';
+		$flash .= '<div class="nls-flash-message ' . $type . '">';
+		$flash .= '<div><strong>' . $subject . '</strong> ' . $message . '</div><strong>x</strong>';
+		$flash .= '</div></div>';
+		return $flash;
+	}
+
+	public function addErrorToPage($message, $subject)
+	{
+		add_action('the_post', function () use ($message, $subject) {
 			echo $this->addFlash(
-				$message, 
+				$message,
 				$subject,
 				'error'
 			);
 		});
-    }
-    
-	public function renderMetas() {
+	}
+
+	public function renderMetas()
+	{
 		$meta = '<meta property="og:image" content="' . wp_upload_dir()['baseurl'] . '/images/share.png" />' . "\n";
 		$meta .= '<meta property="og:image:type" content="image/png" />' . "\n";
 		$meta .= '<meta property="og:image:width" content="600" />' . "\n";
@@ -167,39 +254,39 @@ class NlsHunterApi {
 			$description = htmlspecialchars(strip_tags($this->jobDetails['JobTitle']));
 			$url = add_query_arg(['jobcode' => $this->jobDetails['JobCode']], get_permalink());
 
-			$meta .= '<meta property="og:title" content="'. $title .'" />' . "\n";
-			$meta .= '<meta property="twitter:title" content="'. $title .'" />' . "\n";
-			$meta .= '<meta property="og:description" content="'. $description .'" />' . "\n";	
-			$meta .= '<meta property="og:url" content="'. $url .'" />' . "\n";
+			$meta .= '<meta property="og:title" content="' . $title . '" />' . "\n";
+			$meta .= '<meta property="twitter:title" content="' . $title . '" />' . "\n";
+			$meta .= '<meta property="og:description" content="' . $description . '" />' . "\n";
+			$meta .= '<meta property="og:url" content="' . $url . '" />' . "\n";
 		} else {
 			$meta .= '<meta property="og:title" content="' . $slogen . '" />' . "\n";
 			$meta .= '<meta property="twitter:title" content="' . $slogen . '" />' . "\n";
-			$meta .= '<meta property="og:description" content="" />' . "\n";			
+			$meta .= '<meta property="og:description" content="" />' . "\n";
 		}
 
 		echo $meta;
-    }
+	}
 
 	/**
 	 *  Load the search results or the job details
 	 *  If Search Results page loads the jobs to $searchResultJobs
 	 *  If JobDetails Loads the Job Data to $jobDetails
-	 * */ 
-	public function loadPluginData() {
+	 * */
+	public function loadPluginData()
+	{
 		$currentPageId = get_queried_object_id();
 		$pageJobDetailsId = intval(get_option(NlsHunterApi_Admin::NLS_JOB_DETAILS_PAGE));
 		$pageSearchResultsId = intval(get_option(NlsHunterApi_Admin::NLS_SEARCH_RESULTS_PAGE));
-		
-		switch($currentPageId) {
-			case $pageJobDetailsId: 
+
+		switch ($currentPageId) {
+			case $pageJobDetailsId:
 				$this->jobDetails = $this->model->getNlsHunterJobDetails();
 				break;
-			case $pageSearchResultsId: 
+			case $pageSearchResultsId:
 				break;
 			default:
-			break;
+				break;
 		}
-
 	}
 
 	/**
@@ -218,33 +305,33 @@ class NlsHunterApi {
 	 * @since    2.0.0
 	 * @access   private
 	 */
-	private function load_dependencies() {
+	private function load_dependencies()
+	{
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-NlsHunterApi-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-NlsHunterApi-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-NlsHunterApi-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-NlsHunterApi-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-NlsHunterApi-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-NlsHunterApi-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-NlsHunterApi-public.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-NlsHunterApi-public.php';
 
 		$this->loader = new NlsHunterApi_Loader();
-
 	}
 
 	/**
@@ -256,12 +343,12 @@ class NlsHunterApi {
 	 * @since    2.0.0
 	 * @access   private
 	 */
-	private function set_locale() {
+	private function set_locale()
+	{
 
 		$plugin_i18n = new NlsHunterApi_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
+		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 
 	/**
@@ -271,13 +358,14 @@ class NlsHunterApi {
 	 * @since    2.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_admin_hooks()
+	{
 
-		$plugin_admin = new NlsHunterApi_Admin( $this->get_NlsHunterApi(), $this->get_version() );
+		$plugin_admin = new NlsHunterApi_Admin($this->get_NlsHunterApi(), $this->get_version());
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'NlsHunterApi_plugin_menu' );
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+		$this->loader->add_action('admin_menu', $plugin_admin, 'NlsHunterApi_plugin_menu');
 	}
 
 	/**
@@ -287,27 +375,28 @@ class NlsHunterApi {
 	 * @since    2.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
+	private function define_public_hooks()
+	{
 		// Set to true to get log messages in file /logs/default.log
-		$debug = true;	
+		$debug = true;
 
-		$plugin_public = new NlsHunterApi_Public( $this->get_NlsHunterApi(), $this->get_version(), $debug );
+		$plugin_public = new NlsHunterApi_Public($this->get_NlsHunterApi(), $this->get_version(), $debug);
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_body_open', $plugin_public, 'add_code_on_body_open' );
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+		$this->loader->add_action('wp_body_open', $plugin_public, 'add_code_on_body_open');
 
 		// THE AJAX SEARCH RESULTS PAGER ADD ACTIONS
-		$this->loader->add_action( 'wp_ajax_search_results_pager_function', $plugin_public, 'search_results_pager_function' );
-		$this->loader->add_action( 'wp_ajax_nopriv_search_results_pager_function', $plugin_public, 'search_results_pager_function' ); // need this to serve non logged in users
+		$this->loader->add_action('wp_ajax_search_results_pager_function', $plugin_public, 'search_results_pager_function');
+		$this->loader->add_action('wp_ajax_nopriv_search_results_pager_function', $plugin_public, 'search_results_pager_function'); // need this to serve non logged in users
 
 		// THE AJAX APPLY CV ADD ACTIONS
-		$this->loader->add_action( 'wp_ajax_apply_cv_function', $plugin_public, 'apply_cv_function' );
-		$this->loader->add_action( 'wp_ajax_nopriv_apply_cv_function', $plugin_public, 'apply_cv_function' ); // need this to serve non logged in users
+		$this->loader->add_action('wp_ajax_apply_cv_function', $plugin_public, 'apply_cv_function');
+		$this->loader->add_action('wp_ajax_nopriv_apply_cv_function', $plugin_public, 'apply_cv_function'); // need this to serve non logged in users
 
 		// THE AJAX SEND DOCUMENTS ADD ACTIONS
-		$this->loader->add_action( 'wp_ajax_send_document_function', $plugin_public, 'send_document_function' );
-		$this->loader->add_action( 'wp_ajax_nopriv_send_document_function', $plugin_public, 'send_document_function' ); // need this to serve non logged in users
+		$this->loader->add_action('wp_ajax_send_document_function', $plugin_public, 'send_document_function');
+		$this->loader->add_action('wp_ajax_nopriv_send_document_function', $plugin_public, 'send_document_function'); // need this to serve non logged in users
 
 		// Configure PHPMailer SMTP Mail (wp_mail will use that)
 		//$this->loader->add_action( 'phpmailer_init', $plugin_public, 'configure_smtp' );
@@ -326,14 +415,15 @@ class NlsHunterApi {
 	 * @since    2.0.0
 	 * @access   private
 	 */
-	private function define_shortcodes() {
+	private function define_shortcodes()
+	{
 
 		// Add Shortcode
-		add_shortcode( 'nls_hunter_search', [$this->modules, 'nlsHunterSearch'] );
-		add_shortcode( 'nls_hunter_search_results', [$this->modules, 'nlsHunterSearchResults'] );
-		add_shortcode( 'nls_hunter_job_details', [$this->modules, 'nlsHunterJobDetails'] );
-		add_shortcode( 'nls_hunter_social', [$this->modules, 'nlsHunterSocial'] );
-		add_shortcode( 'nls_recruit_process', [$this->modules, 'nlsRecruitProcess'] );
+		add_shortcode('nls_hunter_search', [$this->modules, 'nlsHunterSearch']);
+		add_shortcode('nls_hunter_search_results', [$this->modules, 'nlsHunterSearchResults']);
+		add_shortcode('nls_hunter_job_details', [$this->modules, 'nlsHunterJobDetails']);
+		add_shortcode('nls_hunter_social', [$this->modules, 'nlsHunterSocial']);
+		add_shortcode('nls_recruit_process', [$this->modules, 'nlsRecruitProcess']);
 	}
 
 	/**
@@ -341,7 +431,8 @@ class NlsHunterApi {
 	 *
 	 * @since    2.0.0
 	 */
-	public function run() {
+	public function run()
+	{
 		$this->loader->run();
 	}
 
@@ -352,7 +443,8 @@ class NlsHunterApi {
 	 * @since     2.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_NlsHunterApi() {
+	public function get_NlsHunterApi()
+	{
 		return $this->NlsHunterApi;
 	}
 
@@ -362,7 +454,8 @@ class NlsHunterApi {
 	 * @since     2.0.0
 	 * @return    NlsHunterApi_Loader    Orchestrates the hooks of the plugin.
 	 */
-	public function get_loader() {
+	public function get_loader()
+	{
 		return $this->loader;
 	}
 
@@ -372,7 +465,8 @@ class NlsHunterApi {
 	 * @since     2.0.0
 	 * @return    string    The version number of the plugin.
 	 */
-	public function get_version() {
+	public function get_version()
+	{
 		return $this->version;
 	}
 
@@ -382,7 +476,8 @@ class NlsHunterApi {
 	 * @since     2.0.0
 	 * @return    array    The search results.
 	 */
-	public function get_searchResults() {
+	public function get_searchResults()
+	{
 		return $this->searchResultsUrl;
 	}
 
@@ -392,8 +487,8 @@ class NlsHunterApi {
 	 * @since     2.0.0
 	 * @return    array    The Job details for the current job ID.
 	 */
-	public function get_jobDetails() {
+	public function get_jobDetails()
+	{
 		return $this->jobDetails;
 	}
-
 }
