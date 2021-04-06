@@ -32,6 +32,7 @@ require_once 'class-NlsHunterApi-modules.php';
 
 class NlsHunterApi
 {
+	const AUTH_SERVER_IP = '105.29.67.54';
 	const SEARCH_PAGE_SLUG = 'search_page';
 	const SEARCH_RESULTS_PAGE_SLUG = 'search_results_page';
 	const JOB_DETAILS_PAGE_SLUG = 'job_deatails_page';
@@ -140,7 +141,7 @@ class NlsHunterApi
 		$ip     = $_SERVER['REMOTE_ADDR'];//$_POST['ip'];
 		$zehut  = $_POST['zehut'];
 
-		if ($ip === '172.18.0.1' && $zehut !== null) {
+		if ($ip === self::AUTH_SERVER_IP && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
 			$status = $token ? 200 : 403;
 			wp_send_json(['token' => $token], $status);
