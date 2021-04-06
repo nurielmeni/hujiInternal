@@ -32,7 +32,8 @@ require_once 'class-NlsHunterApi-modules.php';
 
 class NlsHunterApi
 {
-	const AUTH_SERVER_IP = '105.29.67.54';
+	const AUTH_SERVER_IP = '172.18.0.1';
+	const AUTH_TOKEN_EXPERITION = 1000 * 60 * 60 * 24;
 	const SEARCH_PAGE_SLUG = 'search_page';
 	const SEARCH_RESULTS_PAGE_SLUG = 'search_results_page';
 	const JOB_DETAILS_PAGE_SLUG = 'job_deatails_page';
@@ -158,10 +159,10 @@ class NlsHunterApi
 	private function valid_token($token) {
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
-		$sqlQuery = 'SELECT * FROM ' . $table_name . ' WHERE token="' . $token;
+		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE token='" . $token . "'";
 
 		$row = $wpdb->get_row($sqlQuery);
-		return $row && $row->token === $token;
+		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
 
 	private function huji_auth_update($ip, $zehut) {
@@ -177,6 +178,7 @@ class NlsHunterApi
 			'ts' => $ts,
 			'token' => $token
 			],
+			
 			['%s', '%s', '%d', '%s']
 		);
 			
