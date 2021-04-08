@@ -1,2 +1,4 @@
 wp-config-sample.php
 wp-config.php
+wp-content/uploads/nlsTempFiles
+wp-content/uploads/nlsTempFiles/*

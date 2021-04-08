@@ -22,7 +22,7 @@
                     <div class="help-block"></div>
                 </div>
                 <div class="nls-apply-field browse">
-                    <input type="file" name="addFile" class="file-hidden-field" style="display: none;">
+                    <input type="file" multiple name="addFile[]" class="file-hidden-field" style="display: none;">
                     <label for="addFile"><?= __('Upload documents', 'NlsHunterApi') ?></label>
                     <div class="flex">
                         <button type="button" class="addFile" field-id="addFile">בחר/י קובץ</button>

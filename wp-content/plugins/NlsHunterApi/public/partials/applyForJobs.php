@@ -150,7 +150,7 @@
 
                 <!--  FILE NAME -->
                 <div class="nls-apply-field browse">
-                    <input type="file" name="cvFile" accept=".doc,.docx,.rtf,.txt,.pdf" class="file-hidden-field" style="display: none;">
+                    <input type="file" name="cvFile[]" accept=".doc,.docx,.rtf,.txt,.pdf" class="file-hidden-field" style="display: none;">
                     <label for="cvFile"><?= __('Append CV File', 'NlsHunterApi') ?></label>
                     <div class="flex">
                         <button type="button" class="cvFile" field-id="cvFile"><?= __('Browse File', 'NlsHunterApi') ?></button>
@@ -168,7 +168,7 @@
                 
                 <!--  OTHER FILES -->
                 <div class="nls-apply-field browse">
-                    <input type="file" name="otherFile" class="file-hidden-field" style="display: none;" >
+                    <input type="file" multiple name="otherFile[]" class="file-hidden-field" style="display: none;" >
                     <label for="otherFile"><?= __('Other Files', 'NlsHunterApi') ?></label>
                     <div class="flex">
                         <button type="button" class="otherFile" field-id="otherFile"><?= __('Browse File', 'NlsHunterApi') ?></button>

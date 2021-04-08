@@ -341,13 +341,15 @@ var nls =
       $('.nls-apply-field.browse button').on('click', function (e) {
         e.preventDefault();
         var fieldId = $(this).attr('field-id');
-        $('input[type="file"][name="' + fieldId + '"]').trigger('click');
+        $('input[type="file"][name^="' + fieldId + '"]').trigger('click');
       });
 
       $('input[type="file"]').on('change', function (e) {
-        var fieldId = $(this).attr('name');
+        var fieldId = $(this).attr('name').split('[]')[0];
         $('.nls-apply-field.browse input[name="' + fieldId + 'Name"]')
-          .val(this.files[0].name)
+          .val(this.files.length > 1 ? this.files.length + ' קבצים נבחרו ' : this.files[0].name)
+          .addClass(this.files.length > 1 ? 'rtl' : 'ltr')
+          .removeClass(this.files.length > 1 ? 'ltr' : 'rtl')
           .trigger('change');
       });
 

@@ -173,27 +173,30 @@ class NlsHunterApi_Public {
     public function getSubmitedFile($name, $full = false) {
         $file = [];
         $fileName = isset($_FILES[$name]) ? $_FILES[$name]['name'] : "";
-        $this->writeLog("\ngetSubmitedFile: File name: $fileName");
+        if (!is_array($fileName) || empty($fileName)) return null;
+        $count = count($fileName);
 
-        if (empty($fileName)) return null;
-        if ($_FILES[$name]['error']) {
-            $response = ['sent' => 0, 'html' => $this->sentError(__('Error on uploading the file', 'NlsHunterApi'))];
-            wp_send_json($response);
-        }
-        $file['ext'] = pathinfo($fileName, PATHINFO_EXTENSION);
-        $file['name'] = preg_replace('/\.' . $file['ext'] . '$/', '', $fileName);
-        $this->writeLog('getSubmitedFile: naem:ext' . $file['name'] . ':' . $file['ext']);
-        $tmpFileName = isset($_FILES[$name]) ? $_FILES[$name]['tmp_name'] : "";
+        for($i = 0; $i < $count; $i++) {
+            if ($_FILES[$name]['error'][$i]) {
+                $response = ['sent' => 0, 'html' => $this->sentError(__('Error on uploading the file', 'NlsHunterApi'))];
+                wp_send_json($response);
+                wp_die();
+            }
 
-        if (strlen($fileName) > 0) {
-            $file['path'] = $this->generateTempFile($file['ext'], $file['name']);
-            move_uploaded_file( $tmpFileName, $file['path']);
-            $this->writeLog('File: ' . $name . ': ' . $file['path']);
-            return $full ? $file : $file['path'];
+            $file[$i]['ext'] = pathinfo($fileName[$i], PATHINFO_EXTENSION);
+            $file[$i]['name'] = preg_replace('/\.' . $file[$i]['ext'] . '$/', '', $fileName[$i]);
+            $this->writeLog('getSubmitedFile: naem:ext' . $file[$i]['name'] . ':' . $file[$i]['ext']);
+            $tmpFileName = isset($_FILES[$name]) ? $_FILES[$name]['tmp_name'][$i] : "";
+
+            if (strlen($fileName[$i]) > 0) {
+                $file[$i]['path'] = $this->generateTempFile($file[$i]['ext'], $file[$i]['name']);
+                move_uploaded_file( $tmpFileName, $file[$i]['path']);
+                $this->writeLog('File('.$i.'): ' . $name . ': ' . $file[$i]['path']);
+                
+            }
         }
-        
-        $this->writeLog('File: ' . $name . ': Could not save file');
-        return null;
+
+        return $file;
     }
 
     /**
@@ -205,8 +208,8 @@ class NlsHunterApi_Public {
         $cell = isset($_POST['cell']) ? $_POST['cell'] : null;
 
         // 2. Get addFile (If the file could not be loaded) get an array with full data (name, ext, path)
-        $addFile = $this->getSubmitedFile('addFile', true);
-        if (!$addFile) {
+        $addFiles = $this->getSubmitedFile('addFile');
+        if (!$addFiles || empty($addFiles)) {
             $response = ['status' => 'Error on uloading the file', 'html' => $this->responseHtml(
                 __('Error on uploading the file', 'NlsHunterApi'),
                 __('It might be for corrupted or to large file.', 'NlsHunterApi')
@@ -229,29 +232,33 @@ class NlsHunterApi_Public {
             return;
         }
 
+        $filesDetails = '';
         // 4. Upload the file to card
-        try {
-            $upload = $model->insertNewFile($cardId, $addFile);
-		} catch(\Exception $e) {
-            if (is_array($addFile) && key_exists('path', $addFile)) unlink($addFile['path']);
-            $response = [
-                'status' => 'Not found', 
-                'html' => $this->responseHtml(
-                    __('File upload error', 'NlsHunterApi'),
-                    __('Could not upload the file to the card', 'NlsHunterApi')
-                ),
-                'error' => $e->getMessage()
-            ];
-            wp_send_json($response);
-            return null;
-		}
+        foreach($addFiles as $addFile){
+            try {
+                $upload = $model->insertNewFile($cardId, $addFile);
+            } catch(\Exception $e) {
+                if (is_array($addFile) && key_exists('path', $addFile)) unlink($addFile['path']);
+                $response = [
+                    'status' => 'Not found', 
+                    'html' => $this->responseHtml(
+                        __('File upload error', 'NlsHunterApi'),
+                        __('Could not upload the file to the card', 'NlsHunterApi')
+                    ),
+                    'error' => $e->getMessage()
+                ];
+                wp_send_json($response);
+                return null;
+            }
 
-        // 5. remoeve the tmp file
-        if ($addFile) unlink($addFile['path']);
+            // 5. remoeve the tmp file
+            if ($addFile) unlink($addFile['path']);
+            $filesDetails .= '<br>' . $addFile['name'] . '.' . $addFile['ext'];
+        }    
 
         $response = ['status' => 'Success', 'html' => $this->responseHtml(
             __('Success', 'NlsHunterApi'),
-            __('Your file: ', 'NlsHunterApi') . $addFile['name'] . '.' . $addFile['ext'],
+            __('Your file: ', 'NlsHunterApi') . $filesDetails,
             __('Uploaded successfuly', 'NlsHunterApi')
         )];
         wp_send_json($response);
@@ -286,14 +293,18 @@ class NlsHunterApi_Public {
 
         // CV FILE
         $tmpCvFile = $this->getSubmitedFile('cvFile');
-        if ($tmpCvFile !== null) {
-            array_push($attachedFiles, $tmpCvFile);
+        if ($tmpCvFile !== null && is_array($tmpCvFile)) {
+            foreach($tmpCvFile as $f) {
+                array_push($attachedFiles, $f['path']);
+            }
         }
 
         // OTHER FILE
         $tmpOtherFile = $this->getSubmitedFile('otherFile');
-        if ($tmpOtherFile !== null) {
-            array_push($attachedFiles, $tmpOtherFile);
+        if ($tmpOtherFile !== null && is_array($tmpCvFile)) {
+            foreach($tmpOtherFile as $f) {
+                array_push($attachedFiles, $f['path']);
+            }
         }
 
         // NCAI Files
