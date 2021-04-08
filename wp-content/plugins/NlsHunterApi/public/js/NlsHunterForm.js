@@ -66,12 +66,22 @@ var nls =
 
       fileSize: {
         fn: function (value, el, param) {
-          var valid = false;
+          var valid = true;
           var input = $(el).parents('div.browse').find('input[type="file"]');
-          var size = input[0].files[0].size / 1024 / 1024;
-          console.log('This file size is: ' + size + 'MiB');
+          var files = input[0].files;
 
-          return size < 2;
+          for (var i = 0; i < files.length; i++) {
+
+            // get item
+
+            var size = files[i].size / 1024 / 1024;
+            if(size > 2) valid = false;
+            console.log('This file size is: ' + size + 'MiB');
+        
+          }
+
+
+          return valid;
         },
         msg: 'גודל הקובץ המירבי הוא 2MB.',
       },
