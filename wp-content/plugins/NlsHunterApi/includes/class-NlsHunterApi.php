@@ -113,7 +113,7 @@ class NlsHunterApi
 		}
 		$this->NlsHunterApi = 'NlsHunterApi';
 
-		add_action('plugins_loaded', [$this, 'action_validate_user']);
+		//add_action('plugins_loaded', [$this, 'action_validate_user']);
 
 		$this->load_dependencies();
 
