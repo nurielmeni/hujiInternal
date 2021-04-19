@@ -32,8 +32,8 @@ require_once 'class-NlsHunterApi-modules.php';
 
 class NlsHunterApi
 {
-	const AUTH_SERVER_IP = '172.18.0.1';
-	const AUTH_TOKEN_EXPERITION = 1000 * 60 * 60 * 24;
+	const AUTH_SERVER_IP = ['132.64.52.106', '132.64.3.5', '172.21.0.1', '105.29.67.54'];
+	const AUTH_TOKEN_EXPERITION = 1000 * 60 * 60; // One hour
 	const SEARCH_PAGE_SLUG = 'search_page';
 	const SEARCH_RESULTS_PAGE_SLUG = 'search_results_page';
 	const JOB_DETAILS_PAGE_SLUG = 'job_deatails_page';
@@ -113,7 +113,7 @@ class NlsHunterApi
 		}
 		$this->NlsHunterApi = 'NlsHunterApi';
 
-		//add_action('plugins_loaded', [$this, 'action_validate_user']);
+		add_action('plugins_loaded', [$this, 'action_validate_user']);
 
 		$this->load_dependencies();
 
@@ -142,14 +142,18 @@ class NlsHunterApi
 		$ip     = $_SERVER['REMOTE_ADDR'];//$_POST['ip'];
 		$zehut  = $_POST['zehut'];
 
-		if ($ip === self::AUTH_SERVER_IP && $zehut !== null) {
+		if (in_array($ip, self::AUTH_SERVER_IP) && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
 			$status = $token ? 200 : 403;
 			wp_send_json(['token' => $token], $status);
 			wp_die();
 		}
 
+		// Check bearer token
 		$token = $this->getBearerToken();
+		if ($this->valid_token($token)) return;
+
+		$token = key_exists('token', $_POST) ? $_POST['token'] : null;
 		if ($this->valid_token($token)) return;
 
 		wp_redirect('https://huji.hunterhrms.com/');
@@ -157,6 +161,8 @@ class NlsHunterApi
 	}
 
 	private function valid_token($token) {
+		if(!$token) return false;
+
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
 		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE token='" . $token . "'";

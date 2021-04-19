@@ -147,16 +147,16 @@ class NlsHunterApi_Public {
     /*
      * Return the pager data to the search result module
      */
-    public function search_results_pager_function() {
-        $modules = new NlsHunterApi_modules();
-        $selectedOptions = key_exists('SelectedOptions', $_POST) ? $_POST['SelectedOptions'] : null;
-        $offset = key_exists('offset', $_POST) ? $_POST['offset'] : 0;
-        $countPerPage = NlsHunterApi_modules::NLS_SEARCH_COUNT_PER_PAGE;
+    // public function search_results_pager_function() {
+    //     $modules = new NlsHunterApi_modules();
+    //     $selectedOptions = key_exists('SelectedOptions', $_POST) ? $_POST['SelectedOptions'] : null;
+    //     $offset = key_exists('offset', $_POST) ? $_POST['offset'] : 0;
+    //     $countPerPage = NlsHunterApi_modules::NLS_SEARCH_COUNT_PER_PAGE;
         
-        $modules->nlsHunterSearchResultsAjax($selectedOptions, $offset, $countPerPage);
-        // Don't forget to stop execution afterward.
-        wp_die();    
-    }
+    //     $modules->nlsHunterSearchResultsAjax($selectedOptions, $offset, $countPerPage);
+    //     // Don't forget to stop execution afterward.
+    //     wp_die();    
+    // }
 
     /**
      * Helper function to write log messages
