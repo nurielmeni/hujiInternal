@@ -154,7 +154,12 @@ class NlsHunterApi
 		if ($this->valid_token($token)) return;
 
 		$token = key_exists('token', $_POST) ? $_POST['token'] : null;
-		if ($this->valid_token($token)) return;
+		if ($this->valid_token($token)) {
+			$this->huji_auth_update($ip, $zehut, $token);
+			return;
+		}
+
+		if ($this->valid_ip($ip)) return;
 
 		wp_redirect('https://huji.hunterhrms.com/');
 		exit;
@@ -171,25 +176,37 @@ class NlsHunterApi
 		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
 
-	private function huji_auth_update($ip, $zehut) {
+	private function valid_ip($ip) {
+		if(!$ip) return false;
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . "auth_token";
+		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE ip='" . $ip . "'";
+
+		$row = $wpdb->get_row($sqlQuery);
+		return $row && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
+	}
+
+	private function huji_auth_update($ip, $zehut, $token = false) {
 		$ts 	= time();
-		$token = hash('ripemd160', $ip.$zehut.$ts);
+		$token = $token ? $token : hash('ripemd160', $ip.$zehut.$ts);
   
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
   
-		$res = $wpdb->replace($table_name, [
+		$fields = [
 			'ip' => $ip,
 			'zehut' => $zehut,
 			'ts' => $ts,
 			'token' => $token
-			],
-			
-			['%s', '%s', '%d', '%s']
-		);
+			];
+		$setup = ['%s', '%s', '%d', '%s'];
+
+		$res = $wpdb->replace($table_name, $fields , $setup);
 			
 		return $res === false ? null : $token;
 	}
+
 	/** 
 	 * Get header Authorization
 	 * */
