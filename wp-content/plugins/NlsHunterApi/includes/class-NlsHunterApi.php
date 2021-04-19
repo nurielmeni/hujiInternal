@@ -34,6 +34,7 @@ class NlsHunterApi
 {
 	const AUTH_SERVER_IP = ['132.64.52.106', '132.64.3.5', '172.21.0.1', '105.29.67.54'];
 	const AUTH_TOKEN_EXPERITION = 1000 * 60 * 60; // One hour
+	const AUTH_IP_EXPERITION = 1000 * 60 * 60 * 24; // One hour
 	const SEARCH_PAGE_SLUG = 'search_page';
 	const SEARCH_RESULTS_PAGE_SLUG = 'search_results_page';
 	const JOB_DETAILS_PAGE_SLUG = 'job_deatails_page';
@@ -184,7 +185,7 @@ class NlsHunterApi
 		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE ip='" . $ip . "'";
 
 		$row = $wpdb->get_row($sqlQuery);
-		return $row && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
+		return $row && time() - $row->ts < self::AUTH_IP_EXPERITION;
 	}
 
 	private function huji_auth_update($ip, $zehut, $token = false) {
