@@ -140,7 +140,7 @@ class NlsHunterApi
 	public function action_validate_user()
 	{
 		$ip     = $_SERVER['REMOTE_ADDR'];//$_POST['ip'];
-		$zehut  = $_POST['zehut'];
+		$zehut  = key_exists('zehut', $_POST) ? $_POST['zehut'] : null;
 
 		if (in_array($ip, self::AUTH_SERVER_IP) && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
