@@ -190,21 +190,29 @@ class NlsHunterApi
 
 	private function huji_auth_update($ip, $zehut, $token = false) {
 		$ts 	= time();
-		$token = $token ? $token : hash('ripemd160', $ip.$zehut.$ts);
-  
+		
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
   
-		$fields = [
-			'ip' => $token ? $ip : null,
-			//'zehut' => $zehut,
-			'ts' => $ts,
-			'token' => $token
+		if ($token) {
+			$fields = [
+				'ip' => $ip,
+				'ts' => $ts,
 			];
-		$setup = ['%s', '%d', '%s'];
+			$setup = ['%s','%d'];
+			$res = $wpdb->update($table_name, $fields , ['zehut' => $zehut],$setup);
+		} else {
+			$token = hash('ripemd160', $ip.$zehut.$ts);
+			$fields = [
+				'ip' => null,
+				'zehut' => $zehut,
+				'ts' => $ts,
+				'token' => $token
+			];
+			$setup = ['%s', '%s','%d', '%s'];
+			$res = $wpdb->replace($table_name, $fields , $setup);
+		}
 
-		// $res = $wpdb->replace($table_name, $fields , $setup);
-		$res = $wpdb->update($table_name, $fields , ['zehut' => $zehut],$setup);
 			
 		return $res === false ? null : $token;
 	}
