@@ -197,7 +197,7 @@ class NlsHunterApi
 			$this->write_log('ROW:token ' . $row->token);
 			$this->write_log('ROW:token ' . $row->ts);
 		}
-		$this->write_log('ROW:valid token ' . $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION);
+		$this->write_log('ROW:valid token: ' . ($row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION));
 		
 		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
