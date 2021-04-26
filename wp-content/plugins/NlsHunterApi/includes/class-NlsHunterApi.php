@@ -193,11 +193,11 @@ class NlsHunterApi
 		$table_name = $wpdb->prefix . "auth_token";
 		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE token='" . $token . "'";
 		$row = $wpdb->get_row($sqlQuery);
-		$this->write_log('ROW: ' . $row);
-		$this->write_log('ROW:token ' . $row->token);
-		$this->write_log('ROW:token ' . $row->ts);
+		if ($row){
+			$this->write_log('ROW:token ' . $row->token);
+			$this->write_log('ROW:token ' . $row->ts);
+		}
 		$this->write_log('ROW:valid token ' . $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION);
-
 		
 		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
