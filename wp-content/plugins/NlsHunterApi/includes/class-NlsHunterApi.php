@@ -196,7 +196,7 @@ class NlsHunterApi
 		$table_name = $wpdb->prefix . "auth_token";
   
 		$fields = [
-			'ip' => $ip,
+			'ip' => $token ? $ip : null,
 			//'zehut' => $zehut,
 			'ts' => $ts,
 			'token' => $token
