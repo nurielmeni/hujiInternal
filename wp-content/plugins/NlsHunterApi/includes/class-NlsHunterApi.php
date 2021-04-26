@@ -138,15 +138,28 @@ class NlsHunterApi
 		$this->define_public_hooks();
 	}
 
+
+	public	function write_log($log)
+	{
+		if (true === WP_DEBUG) {
+			if (is_array($log) || is_object($log)) {
+				error_log(print_r($log, true));
+			} else {
+				error_log($log);
+			}
+		}
+	}
+
+
 	public function action_validate_user()
 	{
-		$ip     = $_SERVER['REMOTE_ADDR'];//$_POST['ip'];
+		$ip     = $_SERVER['REMOTE_ADDR']; //$_POST['ip'];
 		$zehut  = key_exists('zehut', $_POST) ? $_POST['zehut'] : null;
 
-		write_log('THIS IS THE START OF MY CUSTOM DEBUG');
-		write_log('IP: REMOTE_ADDR: ' . $ip);
-		write_log('IP: zehut: ' . $zehut);
-		write_log('IP: HTTP_X_FORWARDED_FOR: ' . $_SERVER['HTTP_X_FORWARDED_FOR']);
+		$this->write_log('THIS IS THE START OF MY CUSTOM DEBUG');
+		$this->write_log('IP: REMOTE_ADDR: ' . $ip);
+		$this->write_log('IP: zehut: ' . $zehut);
+		$this->write_log('IP: HTTP_X_FORWARDED_FOR: ' . $_SERVER['HTTP_X_FORWARDED_FOR']);
 
 		if (in_array($ip, self::AUTH_SERVER_IP) && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
@@ -171,8 +184,9 @@ class NlsHunterApi
 		exit;
 	}
 
-	private function valid_token($token) {
-		if(!$token) return false;
+	private function valid_token($token)
+	{
+		if (!$token) return false;
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
@@ -182,8 +196,9 @@ class NlsHunterApi
 		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
 
-	private function valid_ip($ip) {
-		if(!$ip) return false;
+	private function valid_ip($ip)
+	{
+		if (!$ip) return false;
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
@@ -193,32 +208,33 @@ class NlsHunterApi
 		return $row && time() - $row->ts < self::AUTH_IP_EXPERITION;
 	}
 
-	private function huji_auth_update($ip, $zehut, $token = false) {
+	private function huji_auth_update($ip, $zehut, $token = false)
+	{
 		$ts 	= time();
-		
+
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
-  
+
 		if ($token) {
 			$fields = [
 				'ip' => $ip,
 				'ts' => $ts,
 			];
-			$setup = ['%s','%d'];
-			$res = $wpdb->update($table_name, $fields , ['zehut' => $zehut],$setup);
+			$setup = ['%s', '%d'];
+			$res = $wpdb->update($table_name, $fields, ['zehut' => $zehut], $setup);
 		} else {
-			$token = hash('ripemd160', $ip.$zehut.$ts);
+			$token = hash('ripemd160', $ip . $zehut . $ts);
 			$fields = [
 				'ip' => $ip,
 				'zehut' => $zehut,
 				'ts' => $ts,
 				'token' => $token
 			];
-			$setup = ['%s', '%s','%d', '%s'];
-			$res = $wpdb->replace($table_name, $fields , $setup);
+			$setup = ['%s', '%s', '%d', '%s'];
+			$res = $wpdb->replace($table_name, $fields, $setup);
 		}
 
-			
+
 		return $res === false ? null : $token;
 	}
 
