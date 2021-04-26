@@ -204,7 +204,7 @@ class NlsHunterApi
 		} else {
 			$token = hash('ripemd160', $ip.$zehut.$ts);
 			$fields = [
-				'ip' => null,
+				'ip' => $ip,
 				'zehut' => $zehut,
 				'ts' => $ts,
 				'token' => $token
