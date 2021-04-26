@@ -197,13 +197,14 @@ class NlsHunterApi
   
 		$fields = [
 			'ip' => $ip,
-			'zehut' => $zehut,
+			//'zehut' => $zehut,
 			'ts' => $ts,
 			'token' => $token
 			];
-		$setup = ['%s', '%s', '%d', '%s'];
+		$setup = ['%s', '%d', '%s'];
 
-		$res = $wpdb->replace($table_name, $fields , $setup);
+		// $res = $wpdb->replace($table_name, $fields , $setup);
+		$res = $wpdb->update($table_name, $fields , ['zehut' => $zehut],$setup);
 			
 		return $res === false ? null : $token;
 	}
