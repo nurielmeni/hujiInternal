@@ -159,7 +159,6 @@ class NlsHunterApi
 		$this->write_log('THIS IS THE START OF MY CUSTOM DEBUG');
 		$this->write_log('IP: REMOTE_ADDR: ' . $ip);
 		$this->write_log('IP: zehut: ' . $zehut);
-		$this->write_log('IP: HTTP_X_FORWARDED_FOR: ' . $_SERVER['HTTP_X_FORWARDED_FOR']);
 
 		if (in_array($ip, self::AUTH_SERVER_IP) && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
@@ -173,6 +172,8 @@ class NlsHunterApi
 		if ($this->valid_token($token)) return;
 
 		$token = key_exists('token', $_POST) ? $_POST['token'] : null;
+		$this->write_log('IP: token: ' . $token);
+
 		if ($this->valid_token($token)) {
 			$this->huji_auth_update($ip, $zehut, $token);
 			return;
@@ -191,8 +192,13 @@ class NlsHunterApi
 		global $wpdb;
 		$table_name = $wpdb->prefix . "auth_token";
 		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE token='" . $token . "'";
-
 		$row = $wpdb->get_row($sqlQuery);
+		$this->write_log('ROW: ' . $row);
+		$this->write_log('ROW:token ' . $row->token);
+		$this->write_log('ROW:token ' . $row->ts);
+		$this->write_log('ROW:valid token ' . $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION);
+
+		
 		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
 
