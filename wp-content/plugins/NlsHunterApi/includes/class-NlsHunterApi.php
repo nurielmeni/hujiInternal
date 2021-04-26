@@ -156,9 +156,9 @@ class NlsHunterApi
 		$ip     = $_SERVER['REMOTE_ADDR']; //$_POST['ip'];
 		$zehut  = key_exists('zehut', $_POST) ? $_POST['zehut'] : null;
 
-		$this->write_log('THIS IS THE START OF MY CUSTOM DEBUG');
-		$this->write_log('IP: REMOTE_ADDR: ' . $ip);
-		$this->write_log('IP: zehut: ' . $zehut);
+		//$this->write_log('THIS IS THE START OF MY CUSTOM DEBUG');
+		//$this->write_log('IP: REMOTE_ADDR: ' . $ip);
+		//$this->write_log('IP: zehut: ' . $zehut);
 
 		if (in_array($ip, self::AUTH_SERVER_IP) && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
@@ -172,10 +172,10 @@ class NlsHunterApi
 		if ($this->valid_token($token)) return;
 
 		$token = key_exists('token', $_POST) ? $_POST['token'] : null;
-		$this->write_log('IP: token: ' . $token);
+		//$this->write_log('IP: token: ' . $token);
 
 		if ($this->valid_token($token)) {
-			$this->write_log("VALID: updateip,zehut,token:  $ip, $zehut, $token");
+			//$this->write_log("VALID: updateip,zehut,token:  $ip, $zehut, $token");
 
 			$this->huji_auth_update($ip, $zehut, $token);
 			return;
@@ -196,10 +196,10 @@ class NlsHunterApi
 		$sqlQuery = "SELECT * FROM " . $table_name . " WHERE token='" . $token . "'";
 		$row = $wpdb->get_row($sqlQuery);
 		if ($row){
-			$this->write_log('ROW:token ' . $row->token);
-			$this->write_log('ROW:ts ' . $row->ts);
+			//$this->write_log('ROW:token ' . $row->token);
+			//$this->write_log('ROW:ts ' . $row->ts);
 		}
-		$this->write_log('ROW:valid token: ' . ($row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION));
+		//$this->write_log('ROW:valid token: ' . ($row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION));
 		
 		return $row && $row->token === $token && time() - $row->ts < self::AUTH_TOKEN_EXPERITION;
 	}
@@ -224,7 +224,7 @@ class NlsHunterApi
 		$table_name = $wpdb->prefix . "auth_token";
 
 		if ($token) {
-			$this->write_log("huji_auth_update: token: $ip, $ts");
+			//$this->write_log("huji_auth_update: token: $ip, $ts");
 			$fields = [
 				'ip' => $ip,
 				'ts' => $ts,
@@ -232,7 +232,7 @@ class NlsHunterApi
 			$setup = ['%s', '%d'];
 			$res = $wpdb->update($table_name, $fields, ['token' => $token], $setup);
 		} else {
-			$this->write_log("huji_auth_update: no token: $ip, $zehut, $ts");
+			//$this->write_log("huji_auth_update: no token: $ip, $zehut, $ts");
 			$token = hash('ripemd160', $ip . $zehut . $ts);
 			$fields = [
 				'ip' => $ip,
