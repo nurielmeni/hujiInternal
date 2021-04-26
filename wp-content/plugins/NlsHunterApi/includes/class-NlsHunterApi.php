@@ -138,23 +138,15 @@ class NlsHunterApi
 		$this->define_public_hooks();
 	}
 
-	public function custom_logs($message) { 
-		if(is_array($message)) { 
-			$message = json_encode($message); 
-		} 
-		$file = fopen("../custom_logs.log","a"); 
-		echo fwrite($file, "\n" . date('Y-m-d h:i:s') . " :: " . $message); 
-		fclose($file); 
-	}
-
 	public function action_validate_user()
 	{
 		$ip     = $_SERVER['REMOTE_ADDR'];//$_POST['ip'];
 		$zehut  = key_exists('zehut', $_POST) ? $_POST['zehut'] : null;
 
-		$this->custom_logs('IP: REMOTE_ADDR: ' . $ip);
-		$this->custom_logs('IP: zehut: ' . $zehut);
-		$this->custom_logs('IP: HTTP_X_FORWARDED_FOR: ' . $_SERVER['HTTP_X_FORWARDED_FOR']);
+		write_log('THIS IS THE START OF MY CUSTOM DEBUG');
+		write_log('IP: REMOTE_ADDR: ' . $ip);
+		write_log('IP: zehut: ' . $zehut);
+		write_log('IP: HTTP_X_FORWARDED_FOR: ' . $_SERVER['HTTP_X_FORWARDED_FOR']);
 
 		if (in_array($ip, self::AUTH_SERVER_IP) && $zehut !== null) {
 			$token = $this->huji_auth_update($ip, $zehut);
